@@ -1,10 +1,15 @@
 import 'package:get_it/get_it.dart';
 
+import 'src/services/dio_client.dart';
+import 'src/services/implementations/book_repository_impl.dart';
 import 'src/services/local_store.dart';
+import 'src/services/repositories/book_repository.dart';
 
 abstract class DependencyInjector {
   /// Inject dependencies with get_it
   static void injectDependencies() {
     GetIt.instance.registerLazySingleton<LocalStore>(() => LocalStore());
+    GetIt.instance.registerLazySingleton<DioClient>(() => DioClient());
+    GetIt.instance.registerLazySingleton<BookRepository>(() => BookRepositoryImpl());
   }
 }

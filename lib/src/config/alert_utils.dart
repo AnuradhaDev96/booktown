@@ -118,47 +118,7 @@ enum AlertTypes {
 
 /// Common messages to display in UIs, logs. Can be localized if needed.
 abstract class AlertMessages {
-  // Banners
-  static const String errorFetchingBanners = 'Error fetching banners';
-  static const String errorFetchingCategoriesWithChildren = 'Error fetching categories';
-
-  // Categories & Collections
-  static const String emptyCategoriesWithChildren = 'No categories available';
-  static const String emptyCollectionsWithChildren = 'No collections available';
-  static const String emptyTrousersWithChildren = 'No trouser collections available';
-  static const String emptyTShirtsWithChildren = 'No t-shirt collections available';
-  static const String emptyShirtsWithChildren = 'No shirt collections available';
-  static const String emptyJeansWithChildren = 'No jeans collections available';
-
-  // Products
-  static const String errorFetchingProducts = 'Error fetching products';
-  static const String emptyProducts = 'No products available';
-  static const String notifyMe = 'We will notify you once the item is back in stock.';
-  static const String errorFetchingProductReviews = 'Error fetching products reviews';
-  static const String emptyOrders = 'No orders available';
-  static const String emptyFilters = 'No filters available';
-
-  // Order
-  static const String emptyOrder = 'No order available';
-  static const String errorFetchingOrder = 'Order not found. Please ensure the order code is correct and try again';
-  static const String errorFetchingOrders = 'Error fetching your order history';
-  static const String errorFetchingDiscounts = 'Error fetching discounts';
-  static const String errorFetchingStores = 'Error fetching stores';
-
-  // Cart
-  static const String errorFetchingCustomerCart = 'Error fetching customer\'s cart';
-  static const String couponApplied = 'Coupon successfully applied';
-  static const String couponNotFound = "Coupon couldn't be applied";
-
-  // Validations
-  static const String phoneNumberIsRequired = 'Phone number is required';
-
-  // Policy
-  static const String errorFetchingPolicy = 'Error fetching policy details';
-
-  // Shipping
-  static const String shippingFeeError = "Error fetching shipping fee";
-
-  // Trending Now Categories
-  static const String errorFetchingTrendingNowCategory = "Error fetching trending categories";
+  // Books
+  static const String errorFetchingNewBooks = 'Oops! Looks like there is an error. Try refreshing the page.';
+  static const String emptyNewBooks = 'Currently, there are no books listed.';
 }
