@@ -73,7 +73,8 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (notification) {
-        if (notification is ScrollEndNotification) {
+        if (notification is ScrollEndNotification &&
+            notification.metrics.pixels == notification.metrics.maxScrollExtent) {
           // User has reached the end of the list. Load more data
           _loadNextPage();
         }
