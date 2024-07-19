@@ -7,7 +7,7 @@ import '../states/search_book_results_state.dart';
 class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
   SearchBookResultCubit() : super(LoadingSearchState());
 
-  void fetchNewBooks(String query, int page) {
+  void searchBook(String query, int page) {
     GetIt.instance<BookRepository>().searchBooksByTitle(query, page.toString()).then((result) {
       result.fold(
             (newPage) {
