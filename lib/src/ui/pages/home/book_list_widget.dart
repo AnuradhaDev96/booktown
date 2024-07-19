@@ -12,8 +12,8 @@ class BookListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FetchBooksCubit()..fetchNewBooks(),
+    return BlocProvider<FetchBooksCubit>(
+      create: (context) => _fetchBooksCubit..fetchNewBooks(),
       child: BlocBuilder<FetchBooksCubit, FetchBooksState>(
         builder: (BuildContext context, state) {
           if (state is LoadingBooksState) {
