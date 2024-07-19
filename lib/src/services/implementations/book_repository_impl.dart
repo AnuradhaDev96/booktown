@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../config/alert_utils.dart';
-import '../../models/book.dart';
+import '../../models/dto/book.dart';
 import '../dio_client.dart';
 import '../repositories/book_repository.dart';
 

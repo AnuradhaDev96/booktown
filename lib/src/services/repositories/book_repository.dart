@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../models/book.dart';
+import '../../models/dto/book.dart';
 
 abstract class BookRepository {
   /// Get new books

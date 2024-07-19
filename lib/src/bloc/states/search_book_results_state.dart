@@ -1,4 +1,4 @@
-import '../../models/book.dart';
+import '../../models/dto/book.dart';
 
 class SearchBookResultsState {}
 

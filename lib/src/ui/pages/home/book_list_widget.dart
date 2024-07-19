@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/cubits/fetch_books_cubit.dart';
 import '../../../bloc/states/fetch_books_state.dart';
-import '../../../models/book.dart';
+import '../../../models/dto/book.dart';
 
 class BookListWidget extends StatelessWidget {
   BookListWidget({super.key});
