@@ -12,15 +12,9 @@ class BookListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _fetchBooksCubit.fetchNewBooks();
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<FetchBooksCubit>(
-          create: (context) => _fetchBooksCubit,
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => FetchBooksCubit()..fetchNewBooks(),
       child: BlocBuilder<FetchBooksCubit, FetchBooksState>(
-        bloc: _fetchBooksCubit,
         builder: (BuildContext context, state) {
           if (state is LoadingBooksState) {
             return const Text("Implement shimmer");
