@@ -29,18 +29,17 @@ class HomeAppBar extends StatelessWidget {
               builder: (context, searchTerm, _) {
                 return TextFormField(
                   controller: _searchController,
-                  autofocus: true,
                   textInputAction: TextInputAction.search,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
-                  onFieldSubmitted: (value) {
-                    if (_searchController.text.isNotEmpty) {
-                      // Search books
-                    }
-                  },
+                  onFieldSubmitted: (value) => _searchBookByTitle(value),
                   keyboardType: TextInputType.text,
                   decoration: AppStyles.commonInputDecoration(
                     hintText: 'Search',
                     contentPadding: EdgeInsets.symmetric(horizontal: 4.w),
+                    prefixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () => _searchBookByTitle(_searchController.text),
+                    ),
                     suffixIcon: searchTerm.text.isNotEmpty
                         ? IconButton(
                             onPressed: () => _searchController.clear(),
@@ -65,5 +64,11 @@ class HomeAppBar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _searchBookByTitle(String searchTerm) {
+    if (searchTerm.isNotEmpty) {
+      // Search books
+    }
   }
 }
