@@ -10,6 +10,10 @@ Github - AnuradhaDev96
 You should have Flutter SDK version 3.22.3.
 Recommend fvm (flutter version manager) to install or flutter upgrade.
 
+# Additional Features
+1. Optional Haptic feedbacks when displaying snack bars.
+2. Interceptors written for dio client
+
 # Best Practices
 Following resources are only for review purpose.
 

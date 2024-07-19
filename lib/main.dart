@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'dependency_injector.dart';
-import 'src/ui/pages/splash_screen.dart';
+import 'src/config/app_routes.dart';
+import 'src/config/widget_keys.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,10 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const SplashScreen(),
+          navigatorKey: WidgetKeys.mainNavKey,
+          scaffoldMessengerKey: WidgetKeys.mainScaffoldMessengerKey,
+          initialRoute: RouteNames.splashScreen,
+          onGenerateRoute: (settings) => RouteConfig.generateRoute(settings),
         );
       }
     );
