@@ -44,7 +44,10 @@ class HomeAppBar extends StatelessWidget {
                     ),
                     suffixIcon: searchTerm.text.isNotEmpty
                         ? IconButton(
-                            onPressed: () => _searchController.clear(),
+                            onPressed: () {
+                              _searchController.clear();
+                              BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
+                            },
                             icon: const Icon(Icons.close),
                           )
                         : null,
@@ -62,11 +65,7 @@ class HomeAppBar extends StatelessWidget {
             ),
           ),
 
-          IconButton(
-              onPressed: () {
-                BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
-              },
-              icon: const Icon(CupertinoIcons.heart_fill))
+          IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.heart_fill))
         ],
       ),
     );
@@ -75,7 +74,7 @@ class HomeAppBar extends StatelessWidget {
   void _searchBookByTitle(String searchTerm, BuildContext context) {
     if (searchTerm.isNotEmpty) {
       // Switch to search mode
-      BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
+      BlocProvider.of<SwitchBookListModeCubit>(context).switchToSearchMode();
       // Search books
     }
   }
