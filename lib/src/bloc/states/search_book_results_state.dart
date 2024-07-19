@@ -1,5 +1,3 @@
-import '../../models/dto/book.dart';
-
 class SearchBookResultsState {}
 
 class LoadingSearchState extends SearchBookResultsState {}
