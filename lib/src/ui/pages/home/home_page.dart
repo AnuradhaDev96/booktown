@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import 'book_list_widget.dart';
 import 'home_app_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
         toolbarHeight: 11.h,
         flexibleSpace: HomeAppBar(),
       ),
+      body: BookListWidget(),
     );
   }
 }
