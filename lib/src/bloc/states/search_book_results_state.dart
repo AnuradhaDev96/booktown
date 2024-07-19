@@ -5,9 +5,7 @@ class SearchBookResultsState {}
 class LoadingSearchState extends SearchBookResultsState {}
 
 class SearchBookResultPageState extends SearchBookResultsState {
-  final BookPageResponseDto pageResponse;
-
-  SearchBookResultPageState({required this.pageResponse});
+  SearchBookResultPageState();
 }
 
 class SearchBookErrorState extends SearchBookResultsState  {
