@@ -1,13 +1,9 @@
 class SearchBookResultsState {}
 
-class LoadingSearchState extends SearchBookResultsState {}
+class InitializingSearchState extends SearchBookResultsState {}
 
-class SearchBookResultPageState extends SearchBookResultsState {
-  SearchBookResultPageState();
-}
-
-class SearchBookErrorState extends SearchBookResultsState  {
-  final String message;
-
-  SearchBookErrorState({required this.message});
+class BookResultsLoadedState extends SearchBookResultsState {
+  final String? message;
+  final bool isLoadingNextPage;
+  BookResultsLoadedState({this.message, this.isLoadingNextPage = false});
 }
