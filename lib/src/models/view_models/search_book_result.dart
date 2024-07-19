@@ -16,7 +16,7 @@ class SearchBookResult {
     total = newTotal;
   }
 
-  void updateCurrentTotal(int newPage) {
+  void updateCurrentPage(int newPage) {
     currentPage = newPage;
   }
 }

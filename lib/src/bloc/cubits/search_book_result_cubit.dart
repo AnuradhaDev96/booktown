@@ -12,48 +12,46 @@ class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
   /// Search books and update the state with pagination.
   void searchBook(String searchTerm) {
     // Fetch if there is any records left to retrieve by comparing the total record count for the same query
-    if (loadedBooks?.searchedTerm == searchTerm && loadedBooks?.searchResults.length != loadedBooks?.total) {
-      GetIt.instance<BookRepository>()
-          .searchBooksByTitle(searchTerm, loadedBooks != null ? (loadedBooks!.currentPage + 1).toString() : null)
-          .then((result) {
-        result.fold(
-          (pageResponse) {
-            if (loadedBooks != null && loadedBooks!.searchedTerm != searchTerm) {
-              // search term is same. hence update the values with new page
-              loadedBooks!.setTotal(pageResponse.total);
-              loadedBooks!.updateCurrentTotal(pageResponse.total);
-              loadedBooks!.searchResults.addAll(pageResponse.books);
-            } else {
-              // instantiate new result with initial results.
-              loadedBooks = SearchBookResult(
-                total: pageResponse.total,
-                currentPage: pageResponse.page,
-                searchResults: pageResponse.books,
-                searchedTerm: searchTerm,
-              );
-            }
-
-            emit(BookResultsLoadedState());
-          },
-          (message) => emit(BookResultsLoadedState(message: message)),
-        );
-      });
+    if (loadedBooks != null &&
+        loadedBooks!.searchedTerm != searchTerm &&
+        loadedBooks?.searchResults.length != loadedBooks?.total) {
+      getNextPage(searchTerm);
+    } else {
+      newSearch(searchTerm);
     }
   }
 
   /// Do a refresh to get search results.
-  void refreshSearch(String query) {
+  void newSearch(String searchTerm) {
     emit(InitializingSearchState());
 
-    GetIt.instance<BookRepository>().searchBooksByTitle(query, null).then((result) {
+    GetIt.instance<BookRepository>().searchBooksByTitle(searchTerm, null).then((result) {
       result.fold(
         (pageResponse) {
           loadedBooks = SearchBookResult(
             total: pageResponse.total,
             currentPage: pageResponse.page,
             searchResults: pageResponse.books,
-            searchedTerm: query,
+            searchedTerm: searchTerm,
           );
+
+          emit(BookResultsLoadedState());
+        },
+        (message) => emit(BookResultsLoadedState(message: message)),
+      );
+    });
+  }
+
+  /// get next page of current search term
+  void getNextPage(String searchTerm) {
+    GetIt.instance<BookRepository>()
+        .searchBooksByTitle(searchTerm, (loadedBooks!.currentPage + 1).toString())
+        .then((result) {
+      result.fold(
+        (pageResponse) {
+          loadedBooks!.setTotal(pageResponse.total);
+          loadedBooks!.updateCurrentPage(pageResponse.page);
+          loadedBooks!.searchResults.addAll(pageResponse.books);
 
           emit(BookResultsLoadedState());
         },
