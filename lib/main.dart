@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'dependency_injector.dart';
+import 'src/config/widget_keys.dart';
 import 'src/ui/pages/splash_screen.dart';
 
 void main() {
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: const SplashScreen(),
+          navigatorKey: WidgetKeys.mainNavKey,
+          scaffoldMessengerKey: WidgetKeys.mainScaffoldMessengerKey,
         );
       }
     );
