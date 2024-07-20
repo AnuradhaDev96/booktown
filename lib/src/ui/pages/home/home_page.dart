@@ -7,9 +7,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../bloc/cubits/favorite_books_bloc.dart';
 import '../../../bloc/cubits/search_book_result_cubit.dart';
 import '../../../bloc/cubits/switch_list_mode_cubit.dart';
+import '../../../config/widget_keys.dart';
 import 'book_list_widget.dart';
 import 'book_search_results_widget.dart';
 import 'home_app_bar.dart';
+import 'home_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,6 +40,7 @@ class _HomePageState extends State<HomePage> {
       ],
       child: LoaderOverlay(
         child: Scaffold(
+          key: WidgetKeys.homePageKey,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             toolbarHeight: 9.h,
@@ -46,6 +49,7 @@ class _HomePageState extends State<HomePage> {
           body: BlocBuilder<SwitchBookListModeCubit, bool>(builder: (context, isListMode) {
             return isListMode ? BookListWidget() : const BookSearchResultsWidget();
           }),
+          drawer: const HomeDrawer(),
         ),
       ),
     );

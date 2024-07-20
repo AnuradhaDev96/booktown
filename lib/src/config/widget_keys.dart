@@ -7,4 +7,7 @@ abstract class WidgetKeys {
 
   /// Main messenger key configured at MaterialApp level
   static final mainScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
+  /// Home page scaffold key
+  static final GlobalKey<ScaffoldState> homePageKey = GlobalKey<ScaffoldState>();
 }

@@ -28,7 +28,9 @@ class HomeAppBar extends StatelessWidget {
         children: [
           IconButton(
             icon: const Icon(Icons.menu_rounded),
-            onPressed: () {},
+            onPressed: () {
+              WidgetKeys.homePageKey.currentState!.openDrawer();
+            },
           ),
 
           // Update suffix icon based on text input
