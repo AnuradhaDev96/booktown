@@ -13,7 +13,7 @@ class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
   void searchBook(String searchTerm) {
     // Fetch if there is any records left to retrieve by comparing the total record count for the same query
     if (loadedBooks != null &&
-        loadedBooks!.searchedTerm != searchTerm &&
+        loadedBooks!.searchedTerm == searchTerm &&
         loadedBooks?.searchResults.length != loadedBooks?.total) {
       var currentState = state;
       if (currentState is BookResultsLoadedState) {
