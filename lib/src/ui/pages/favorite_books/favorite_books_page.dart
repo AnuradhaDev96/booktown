@@ -32,7 +32,7 @@ class FavoriteBooksPage extends StatelessWidget {
         stream: GetIt.instance<FavoriteBooksBloc>().favoriteBooksStream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Implement shimmer");
+            return const Text("Implement shimmer");
           }
 
           if (snapshot.hasData) {
