@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/fetch_book_details_cubit.dart';
 import '../../../bloc/states/fetch_book_details_state.dart';
@@ -16,6 +18,7 @@ class BookListItemWidget extends StatelessWidget {
   final BookDto bookDto;
   final _fetchDetailsCubit = FetchBookDetailsCubit();
 
+  /// Factory method to build widget using [FavoriteBookDto]
   factory BookListItemWidget.fromFavorites({required FavoriteBookDto favoriteBook}) {
     return BookListItemWidget(
       bookDto: BookDto(
@@ -53,7 +56,33 @@ class BookListItemWidget extends StatelessWidget {
               AlertUtils.showSnackBar(state.errorMessage, AlertTypes.error);
             }
           },
-          child: SizedBox(height: 140, child: Text(bookDto.title)),
+          child: SizedBox(
+            height: 140,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.network(
+                  bookDto.image,
+                  width: 20.w,
+                  height: 18.w,
+                  fit: BoxFit.fitHeight,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(bookDto.title),
+                      Text(bookDto.subtitle),
+                    ],
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(CupertinoIcons.heart),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
