@@ -121,4 +121,12 @@ abstract class AlertMessages {
   // Books
   static const String errorFetchingNewBooks = 'Oops! Looks like there is an error. Try refreshing the page.';
   static const String emptyNewBooks = 'Currently, there are no books listed.';
+
+  // Search
+  static const String errorFetchingSearchQuery =
+      'Oops! Looks like there is an error in search.';
+
+  // Book details
+  static const String errorFetchingBookDetails = 'Oops! There is an error fetching your book details.';
+  static const String bookNotFound = 'Book details are not available for your selection.';
 }
