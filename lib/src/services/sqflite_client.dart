@@ -9,9 +9,10 @@ abstract class DbHelper {
   static const recentSearchTerms = 'RecentSearchTerms';
 
   static const createFavoritesTableCommand =
-      'CREATE TABLE $favoritesTable(variantId TEXT PRIMARY KEY, productId TEXT, name TEXT, image TEXT, viewedAt TEXT,price TEXT)';
+      'CREATE TABLE $favoritesTable(isbn13 TEXT PRIMARY KEY, title TEXT, subtitle TEXT, price TEXT, image TEXT, url TEXT, viewedAt TEXT)';
 
-  static const recentSearchTermsTableCommand = 'CREATE TABLE $recentSearchTerms(searchTerm TEXT PRIMARY KEY, viewedAt TEXT)';
+  static const createRecentSearchTermsTableCommand =
+      'CREATE TABLE $recentSearchTerms(searchTerm TEXT PRIMARY KEY, viewedAt TEXT)';
 }
 
 class SqlfliteClient {
@@ -24,8 +25,8 @@ class SqlfliteClient {
       await openDatabase(
         join(await getDatabasesPath(), DbHelper.dbName),
         onCreate: (db, version) async {
-          await db.execute(DbHelper.favoritesTable);
-          await db.execute(DbHelper.recentSearchTermsTableCommand);
+          await db.execute(DbHelper.createFavoritesTableCommand);
+          await db.execute(DbHelper.createRecentSearchTermsTableCommand);
         },
         version: DbHelper.dbVersion,
       );

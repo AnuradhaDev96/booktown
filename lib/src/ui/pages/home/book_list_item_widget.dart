@@ -8,12 +8,26 @@ import '../../../config/alert_utils.dart';
 import '../../../config/app_routes.dart';
 import '../../../config/widget_keys.dart';
 import '../../../models/dto/book.dart';
+import '../../../models/dto/favorite_book_dto.dart';
 
 class BookListItemWidget extends StatelessWidget {
   BookListItemWidget({super.key, required this.bookDto});
 
   final BookDto bookDto;
   final _fetchDetailsCubit = FetchBookDetailsCubit();
+
+  factory BookListItemWidget.fromFavorites({required FavoriteBookDto favoriteBook}) {
+    return BookListItemWidget(
+      bookDto: BookDto(
+        title: favoriteBook.title,
+        subtitle: favoriteBook.subtitle,
+        isbn13: favoriteBook.isbn13,
+        price: favoriteBook.price,
+        image: favoriteBook.price,
+        url: favoriteBook.url,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
