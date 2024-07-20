@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'dependency_injector.dart';
 import 'src/bloc/cubits/toggle_theme_bloc.dart';
 import 'src/config/app_routes.dart';
+import 'src/config/app_styles.dart';
 import 'src/config/widget_keys.dart';
 
 void main() {
@@ -29,16 +30,8 @@ class BookTownApp extends StatelessWidget {
             return MaterialApp(
               title: 'BookTown',
               debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                brightness: Brightness.light,
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey, brightness: Brightness.light),
-                useMaterial3: true,
-              ),
-              darkTheme: ThemeData(
-                brightness: Brightness.dark,
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber, brightness: Brightness.dark),
-                useMaterial3: true,
-              ),
+              theme: AppStyles.lightTheme,
+              darkTheme: AppStyles.darkTheme,
               themeMode: snapshot.data ?? ThemeMode.light,
               navigatorKey: WidgetKeys.mainNavKey,
               scaffoldMessengerKey: WidgetKeys.mainScaffoldMessengerKey,

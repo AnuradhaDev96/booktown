@@ -112,7 +112,7 @@ class BookListItemWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(bookDto.title),
+                      Text(bookDto.title, style: Theme.of(context).textTheme.titleMedium),
                       Text(bookDto.subtitle),
                     ],
                   ),
@@ -153,7 +153,7 @@ class BookListItemWidget extends StatelessWidget {
     );
     Future.delayed(
       const Duration(milliseconds: 1800),
-          () {
+      () {
         context.loaderOverlay.hide();
       },
     );

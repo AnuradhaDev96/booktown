@@ -44,6 +44,8 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             toolbarHeight: 9.h,
+            backgroundColor: Theme.of(context).cardColor,
+            surfaceTintColor: Theme.of(context).cardColor,
             flexibleSpace: HomeAppBar(),
           ),
           body: BlocBuilder<SwitchBookListModeCubit, bool>(builder: (context, isListMode) {

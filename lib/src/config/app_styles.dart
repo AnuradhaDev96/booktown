@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import 'app_text_styles.dart';
+
 abstract class AppStyles {
   static commonInputDecoration({
     String? labelText,
@@ -61,4 +63,36 @@ abstract class AppStyles {
           ),
         ),
       );
+
+  static ThemeData get lightTheme {
+    const mainColor = Colors.blueGrey;
+    return ThemeData(
+      brightness: Brightness.light,
+      colorScheme: ColorScheme.fromSeed(seedColor: mainColor, brightness: Brightness.light),
+      scaffoldBackgroundColor: Colors.grey[100],
+      appBarTheme: const AppBarTheme(
+        surfaceTintColor: mainColor,
+        backgroundColor: mainColor,
+      ),
+      fontFamily: AppTextStyles.mainFontFamily,
+      textTheme: AppTextStyles.commonTextTheme,
+      useMaterial3: true,
+    );
+  }
+
+  static ThemeData get darkTheme {
+    const mainColor = Colors.blueGrey;
+    return ThemeData(
+      brightness: Brightness.dark,
+      colorScheme: ColorScheme.fromSeed(seedColor: mainColor, brightness: Brightness.dark),
+      scaffoldBackgroundColor: Colors.black,
+      appBarTheme: const AppBarTheme(
+        surfaceTintColor: mainColor,
+        backgroundColor: mainColor,
+      ),
+      fontFamily: AppTextStyles.mainFontFamily,
+      textTheme: AppTextStyles.commonTextTheme,
+      useMaterial3: true,
+    );
+  }
 }
