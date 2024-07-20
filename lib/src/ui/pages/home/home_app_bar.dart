@@ -10,6 +10,7 @@ import '../../../config/app_styles.dart';
 class HomeAppBar extends StatelessWidget {
   HomeAppBar({super.key});
 
+  /// This controller is used for ValueListenableBuilder to listen changes in text
   final TextEditingController _searchController = TextEditingController();
 
   @override
