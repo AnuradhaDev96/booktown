@@ -30,7 +30,10 @@ class BookListItemWidget extends StatelessWidget {
           listener: (BuildContext context, state) {
             if (state is BookDetailsSuccessState) {
               context.loaderOverlay.hide();
-              WidgetKeys.mainNavKey.currentState!.pushNamed(RouteNames.bookDetailsPage);
+              WidgetKeys.mainNavKey.currentState!.pushNamed(
+                RouteNames.bookDetailsPage,
+                arguments: {'details': state.detailsDto},
+              );
             } else if (state is BookDetailsErrorState) {
               context.loaderOverlay.hide();
               AlertUtils.showSnackBar(state.errorMessage, AlertTypes.error);

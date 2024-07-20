@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../ui/pages/book_details/book_details_page.dart';
 import '../ui/pages/home/home_page.dart';
 import '../ui/pages/splash_screen.dart';
 
@@ -18,6 +19,12 @@ abstract class RouteConfig {
     switch (settings.name) {
       case RouteNames.homePage:
         return MaterialPageRoute(builder: (context) => const HomePage(), settings: settings);
+      case RouteNames.bookDetailsPage:
+        var arguments = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => BookDetailsPage(details: arguments['details']),
+          settings: settings,
+        );
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen(), settings: settings);
     }
