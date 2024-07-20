@@ -26,6 +26,7 @@ Recommend fvm (flutter version manager) to install or flutter upgrade.
 # Additional Features
 1. Optional Haptic feedbacks when displaying snack bars.
 2. Interceptors written for dio client
+3. When user double taps on book list item, Heart animation displays.
 
 # Best Practices
 Following resources are only for review purpose.

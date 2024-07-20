@@ -13,6 +13,8 @@ class FavoriteBooksBloc {
 
   Stream<List<FavoriteBookDto>> get favoriteBooksStream => _favoriteBooksSubject.stream;
 
+  List<FavoriteBookDto> get favoriteBooksValue => _favoriteBooksSubject.value;
+
   void _syncFavoriteBookList(List<FavoriteBookDto> list) => _favoriteBooksSubject.sink.add(list);
 
   /// Get favorite books from local database and sync with the stream.
