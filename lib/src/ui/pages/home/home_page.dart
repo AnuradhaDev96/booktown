@@ -4,7 +4,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
-import '../../../bloc/cubits/switch_list_mode.dart';
+import '../../../bloc/cubits/switch_list_mode_cubit.dart';
 import 'book_list_widget.dart';
 import 'book_search_results_widget.dart';
 import 'home_app_bar.dart';

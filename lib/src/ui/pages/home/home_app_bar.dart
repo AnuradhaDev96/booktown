@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
-import '../../../bloc/cubits/switch_list_mode.dart';
+import '../../../bloc/cubits/switch_list_mode_cubit.dart';
 import '../../../config/app_styles.dart';
 
 class HomeAppBar extends StatelessWidget {

@@ -7,4 +7,6 @@ abstract class FavoriteBooksRepository {
 
   /// Get recently saved books ordered(sorted) by viewed at time
   Future<List<FavoriteBookDto>> getFavoriteBooks();
+
+  Future<bool> removeFromFavorites(String isbn);
 }
