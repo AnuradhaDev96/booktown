@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
@@ -18,15 +19,17 @@ class HomePage extends StatelessWidget {
         BlocProvider<SwitchBookListModeCubit>(create: (context) => SwitchBookListModeCubit()),
         BlocProvider<SearchBookResultCubit>(create: (context) => SearchBookResultCubit()),
       ],
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: 9.h,
-          flexibleSpace: HomeAppBar(),
+      child: LoaderOverlay(
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            toolbarHeight: 9.h,
+            flexibleSpace: HomeAppBar(),
+          ),
+          body: BlocBuilder<SwitchBookListModeCubit, bool>(builder: (context, isListMode) {
+            return isListMode ? BookListWidget() : const BookSearchResultsWidget();
+          }),
         ),
-        body: BlocBuilder<SwitchBookListModeCubit, bool>(builder: (context, isListMode) {
-          return isListMode ? BookListWidget() : const BookSearchResultsWidget();
-        }),
       ),
     );
   }
