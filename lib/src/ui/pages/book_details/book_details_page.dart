@@ -1,10 +1,15 @@
+import 'package:booktown/src/models/dto/book.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get_it/get_it.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../bloc/cubits/favorite_books_bloc.dart';
 import '../../../config/widget_keys.dart';
 import '../../../models/dto/book_details_dto.dart';
+import '../../../models/dto/favorite_book_dto.dart';
+import '../../widgets/manage_favorite_books_icons.dart';
 
 class BookDetailsPage extends StatelessWidget {
   const BookDetailsPage({super.key, required this.details});
@@ -28,7 +33,34 @@ class BookDetailsPage extends StatelessWidget {
           style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
         ),
         title: const Text("Book Details"),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.heart_fill))],
+        actions: [
+          StreamBuilder<List<FavoriteBookDto>>(
+            stream: GetIt.instance<FavoriteBooksBloc>().favoriteBooksStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data != null) {
+                final currentFavoriteList = snapshot.data!;
+                if (currentFavoriteList.any((fav) => fav.isbn13 == details.isbn13)) {
+                  return FavoriteIconButtonFilled(isbn: details.isbn13);
+                } else {
+                  return FavoriteIconButtonOutlined(
+                      book: BookDto(
+                    title: details.title,
+                    subtitle: details.subtitle,
+                    isbn13: details.isbn13,
+                    price: details.price,
+                    image: details.image,
+                    url: details.url,
+                  ));
+                }
+              } else {
+                return IconButton(
+                  onPressed: () {},
+                  icon: const Icon(CupertinoIcons.heart),
+                );
+              }
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
