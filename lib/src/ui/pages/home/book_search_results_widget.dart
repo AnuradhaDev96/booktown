@@ -39,6 +39,15 @@ class PaginatedBookResultListView extends StatefulWidget {
 class _PaginatedBookResultListViewState extends State<PaginatedBookResultListView> {
   final ScrollController _scrollController = ScrollController();
 
+  bool onNotificationCallback(ScrollNotification notification) {
+    if (notification is ScrollEndNotification &&
+        notification.metrics.pixels == notification.metrics.maxScrollExtent) {
+      // User has reached the end of the list. Load more data
+      BlocProvider.of<SearchBookResultCubit>(context).loadNextPageWithCurrentSearchTerm();
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -46,14 +55,17 @@ class _PaginatedBookResultListViewState extends State<PaginatedBookResultListVie
       slivers: [
         (widget.resultCubit.loadedBooks != null && widget.resultCubit.loadedBooks!.searchResults.isNotEmpty)
             ? SliverToBoxAdapter(
-          child: ListView.builder(
-            shrinkWrap: true,
-            controller: _scrollController,
-            itemBuilder: (context, index) => SizedBox(
-              height: 140,
-              child: Text("$index\n${widget.resultCubit.loadedBooks!.searchResults[index].title}"),
+          child: NotificationListener<ScrollNotification>(
+            onNotification: onNotificationCallback,
+            child: ListView.builder(
+              shrinkWrap: true,
+              controller: _scrollController,
+              itemBuilder: (context, index) => SizedBox(
+                height: 140,
+                child: Text("$index\n${widget.resultCubit.loadedBooks!.searchResults[index].title}"),
+              ),
+              itemCount: widget.resultCubit.loadedBooks!.searchResults.length,
             ),
-            itemCount: widget.resultCubit.loadedBooks!.searchResults.length,
           ),
         )
             : const Text("Search results empty"),

@@ -19,11 +19,11 @@ class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
       if (currentState is BookResultsLoadedState) {
         // call API call if next page loading state is false
         if (!currentState.isLoadingNextPage) {
-          getNextPage(searchTerm);
+          _getNextPage(searchTerm);
         }
       } else {
         // API call can be triggered for next page
-        getNextPage(searchTerm);
+        _getNextPage(searchTerm);
       }
     } else {
       newSearch(searchTerm);
@@ -52,7 +52,7 @@ class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
   }
 
   /// get next page of current search term
-  void getNextPage(String searchTerm) {
+  void _getNextPage(String searchTerm) {
     emit(BookResultsLoadedState(isLoadingNextPage: true));
     GetIt.instance<BookRepository>()
         .searchBooksByTitle(searchTerm, (loadedBooks!.currentPage + 1).toString())
@@ -68,5 +68,12 @@ class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
         (message) => emit(BookResultsLoadedState(message: message)),
       );
     });
+  }
+
+  /// public method to load next page
+  void loadNextPageWithCurrentSearchTerm() {
+    if (loadedBooks != null) {
+      searchBook(loadedBooks!.searchedTerm);
+    }
   }
 }
