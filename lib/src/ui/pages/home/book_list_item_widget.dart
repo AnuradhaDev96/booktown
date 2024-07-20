@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../config/app_routes.dart';
 import '../../../config/widget_keys.dart';
@@ -14,7 +15,9 @@ class BookListItemWidget extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        WidgetKeys.mainNavKey.currentState!.pushNamed(RouteNames.bookDetailsPage);
+        context.loaderOverlay.show();
+        // WidgetKeys.mainNavKey.currentState!.pushNamed(RouteNames.bookDetailsPage);
+        context.loaderOverlay.hide();
       },
       child: SizedBox(height: 140, child: Text(bookDto.title)),
     );
