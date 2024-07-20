@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -40,7 +42,7 @@ abstract class AlertUtils {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 3),
-                      child: Icon(alertType.iconData, color: Colors.green),
+                      child: Icon(alertType.iconData, color: alertType.borderColor),
                     ),
                     Text(
                       message,
