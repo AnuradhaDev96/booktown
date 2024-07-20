@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/cubits/fetch_books_cubit.dart';
 import '../../../bloc/states/fetch_books_state.dart';
-import '../../../models/book.dart';
+import '../../../models/dto/book.dart';
 
 class BookListWidget extends StatelessWidget {
   BookListWidget({super.key});
@@ -12,15 +12,9 @@ class BookListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _fetchBooksCubit.fetchNewBooks();
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<FetchBooksCubit>(
-          create: (context) => _fetchBooksCubit,
-        ),
-      ],
+    return BlocProvider<FetchBooksCubit>(
+      create: (context) => _fetchBooksCubit..fetchNewBooks(),
       child: BlocBuilder<FetchBooksCubit, FetchBooksState>(
-        bloc: _fetchBooksCubit,
         builder: (BuildContext context, state) {
           if (state is LoadingBooksState) {
             return const Text("Implement shimmer");
@@ -79,13 +73,15 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (notification) {
-        if (notification is ScrollEndNotification) {
+        if (notification is ScrollEndNotification &&
+            notification.metrics.pixels == notification.metrics.maxScrollExtent) {
           // User has reached the end of the list. Load more data
           _loadNextPage();
         }
         return false;
       },
       child: ListView.builder(
+        shrinkWrap: true,
         controller: _scrollController,
         itemBuilder: (context, index) => SizedBox(height: 140, child: Text("$index\n${_paginatedList[index].title}")),
         itemCount: _paginatedList.length,
