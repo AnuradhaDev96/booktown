@@ -29,7 +29,7 @@ class BookListItemWidget extends StatelessWidget {
         subtitle: favoriteBook.subtitle,
         isbn13: favoriteBook.isbn13,
         price: favoriteBook.price,
-        image: favoriteBook.price,
+        image: favoriteBook.image,
         url: favoriteBook.url,
       ),
     );
