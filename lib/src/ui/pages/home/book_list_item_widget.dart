@@ -17,9 +17,17 @@ import '../../../models/dto/favorite_book_dto.dart';
 import '../../widgets/manage_favorite_books_icons.dart';
 
 class BookListItemWidget extends StatelessWidget {
-  BookListItemWidget({super.key, required this.bookDto});
+  BookListItemWidget({
+    super.key,
+    required this.bookDto,
+    this.enableDoubleTapControlForFav = true,
+  });
 
   final BookDto bookDto;
+
+  /// Set [false] to disable double tab control.
+  final bool enableDoubleTapControlForFav;
+
   final _fetchDetailsCubit = FetchBookDetailsCubit();
   final _removeFromFavCubit = RemoveFavoriteBookCubit();
   final _addToFavCubit = AddFavoriteBookCubit();
@@ -35,6 +43,7 @@ class BookListItemWidget extends StatelessWidget {
         image: favoriteBook.image,
         url: favoriteBook.url,
       ),
+      enableDoubleTapControlForFav: false,
     );
   }
 
@@ -48,13 +57,13 @@ class BookListItemWidget extends StatelessWidget {
       ],
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onDoubleTap: () {
+        onDoubleTap: enableDoubleTapControlForFav ? () {
           if (GetIt.instance<FavoriteBooksBloc>().favoriteBooksValue.any((fav) => fav.isbn13 == bookDto.isbn13)) {
             _removeFromFavCubit.removeBookFromFavorites(bookDto.isbn13);
           } else {
             _addToFavCubit.addToFavorites(serverBook: bookDto);
           }
-        },
+        } : null,
         onTap: () {
           _fetchDetailsCubit.fetchBookDetails(bookDto.isbn13);
           context.loaderOverlay.show();

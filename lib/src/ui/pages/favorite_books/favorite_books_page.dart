@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../bloc/cubits/favorite_books_bloc.dart';
 import '../../../config/alert_utils.dart';
@@ -13,42 +14,44 @@ class FavoriteBooksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GetIt.instance<FavoriteBooksBloc>().retrieveFavoriteBookList();
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        leading: TextButton.icon(
-          onPressed: () => WidgetKeys.mainNavKey.currentState!.pop(),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 16,
+    return LoaderOverlay(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          leading: TextButton.icon(
+            onPressed: () => WidgetKeys.mainNavKey.currentState!.pop(),
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 16,
+            ),
+            label: const Text('Back'),
+            style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
           ),
-          label: const Text('Back'),
-          style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
+          title: const Text("Favorites"),
         ),
-        title: const Text("Favorites"),
-      ),
-      body: StreamBuilder<List<FavoriteBookDto>>(
-        stream: GetIt.instance<FavoriteBooksBloc>().favoriteBooksStream,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Implement shimmer");
-          }
-
-          if (snapshot.hasData) {
-            if (snapshot.data != null && snapshot.data!.isNotEmpty) {
-              return ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index) => BookListItemWidget.fromFavorites(favoriteBook: snapshot.data![index]),
-                itemCount: snapshot.data!.length,
-              );
-            } else {
-              return const Text(AlertMessages.favoriteBooksNotFound);
+        body: StreamBuilder<List<FavoriteBookDto>>(
+          stream: GetIt.instance<FavoriteBooksBloc>().favoriteBooksStream,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text("Implement shimmer");
             }
-          }
 
-          return const Text(AlertMessages.errorFetchingFavoriteBooks);
-        },
+            if (snapshot.hasData) {
+              if (snapshot.data != null && snapshot.data!.isNotEmpty) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => BookListItemWidget.fromFavorites(favoriteBook: snapshot.data![index]),
+                  itemCount: snapshot.data!.length,
+                );
+              } else {
+                return const Text(AlertMessages.favoriteBooksNotFound);
+              }
+            }
+
+            return const Text(AlertMessages.errorFetchingFavoriteBooks);
+          },
+        ),
       ),
     );
   }
