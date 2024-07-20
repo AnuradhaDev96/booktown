@@ -57,7 +57,7 @@ class AddFavoriteBookCubit extends Cubit<DataPayloadState> {
       GetIt.instance<FavoriteBooksBloc>().retrieveFavoriteBookList();
       emit(SuccessState());
     } else {
-      emit(ErrorState("List item can't be saved"));
+      emit(ErrorState("This book can't be marked as favorite"));
     }
   }
 }
