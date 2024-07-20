@@ -40,7 +40,7 @@ class RemoveFavoriteBookCubit extends Cubit<DataPayloadState> {
 class AddFavoriteBookCubit extends Cubit<DataPayloadState> {
   AddFavoriteBookCubit() : super(InitialState());
 
-  Future<void> createListItem({required BookDto serverBook}) async {
+  Future<void> addToFavorites({required BookDto serverBook}) async {
     emit(RequestingState());
 
     final bool result = await GetIt.instance<FavoriteBooksRepository>().addBookToFavoriteList(FavoriteBookDto(

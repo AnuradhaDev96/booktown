@@ -37,7 +37,7 @@ class FavoriteBooksRepositoryImpl implements FavoriteBooksRepository {
   @override
   Future<bool> removeFromFavorites(String isbn) async {
     final db = await GetIt.instance<SqlfliteClient>().getDatabase();
-    final deletedRowCount = await db.delete(_tableName, where: 'isbn = ?', whereArgs: [isbn]);
+    final deletedRowCount = await db.delete(_tableName, where: 'isbn13 = ?', whereArgs: [isbn]);
 
     return deletedRowCount > 0 ? true : false;
   }
