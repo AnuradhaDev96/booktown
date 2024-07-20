@@ -11,7 +11,10 @@ class HomeAppBar extends StatelessWidget {
   HomeAppBar({super.key});
 
   /// This controller is used for ValueListenableBuilder to listen changes in text
-  final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchTermController = TextEditingController();
+
+  final List<String> recentSearch = <String>['mongodb', 'mern'];
+  final SearchController _searchController = SearchController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,41 +31,60 @@ class HomeAppBar extends StatelessWidget {
 
           // Update suffix icon based on text input
           Expanded(
-            child: ValueListenableBuilder(
-              valueListenable: _searchController,
-              builder: (context, searchTerm, _) {
-                return TextFormField(
-                  controller: _searchController,
-                  textInputAction: TextInputAction.search,
-                  onTapOutside: (event) => FocusScope.of(context).unfocus(),
-                  onFieldSubmitted: (value) => _searchBookByTitle(value, context),
-                  keyboardType: TextInputType.text,
-                  decoration: AppStyles.commonInputDecoration(
-                    hintText: 'Search',
-                    contentPadding: EdgeInsets.symmetric(horizontal: 4.w),
-                    prefixIcon: IconButton(
-                      icon: const Icon(Icons.search),
-                      onPressed: () => _searchBookByTitle(_searchController.text, context),
-                    ),
-                    suffixIcon: searchTerm.text.isNotEmpty
-                        ? IconButton(
-                            onPressed: () {
-                              _searchController.clear();
-                              BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
-                            },
-                            icon: const Icon(Icons.close),
-                          )
-                        : null,
-                  ),
-                  cursorColor: Colors.black,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return '';
-                    }
+            child: SearchAnchor(
+              searchController: _searchController,
+              builder: (context, anchorController) {
+                return ValueListenableBuilder(
+                  valueListenable: _searchTermController,
+                  builder: (context, searchTerm, _) {
+                    return TextFormField(
+                      controller: _searchTermController,
+                      textInputAction: TextInputAction.search,
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
+                      onFieldSubmitted: (value) => _searchBookByTitle(value, context),
+                      keyboardType: TextInputType.text,
+                      decoration: AppStyles.commonInputDecoration(
+                        hintText: 'Search',
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4.w),
+                        prefixIcon: IconButton(
+                          icon: const Icon(Icons.search),
+                          onPressed: () {
+                            if (_searchTermController.text.isNotEmpty) {
+                              _searchBookByTitle(_searchTermController.text, context);
+                            } else {
+                              anchorController.openView();
+                            }
+                          },
+                        ),
+                        suffixIcon: searchTerm.text.isNotEmpty
+                            ? IconButton(
+                                onPressed: () {
+                                  _searchTermController.clear();
+                                  BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
+                                },
+                                icon: const Icon(Icons.close),
+                              )
+                            : null,
+                      ),
+                      cursorColor: Colors.black,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return '';
+                        }
 
-                    return null;
+                        return null;
+                      },
+                    );
                   },
                 );
+              },
+              suggestionsBuilder: (context, anchorController) {
+                return recentSearch.map((r) => ListTile(
+                  title: Text(r),
+                  onTap: () {
+                    anchorController.closeView(r);
+                  },
+                ),).toList();
               },
             ),
           ),
