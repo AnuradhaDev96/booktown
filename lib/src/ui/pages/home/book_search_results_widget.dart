@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
 import '../../../bloc/states/search_book_results_state.dart';
+import 'book_list_item_widget.dart';
 
 class BookSearchResultsWidget extends StatelessWidget {
   const BookSearchResultsWidget({super.key});
@@ -61,9 +62,8 @@ class _PaginatedBookResultListViewState extends State<PaginatedBookResultListVie
                     child: ListView.builder(
                       shrinkWrap: true,
                       controller: _scrollController,
-                      itemBuilder: (context, index) => SizedBox(
-                        height: 140,
-                        child: Text("$index\n${widget.resultCubit.loadedBooks!.searchResults[index].title}"),
+                      itemBuilder: (context, index) => BookListItemWidget(
+                        bookDto: widget.resultCubit.loadedBooks!.searchResults[index],
                       ),
                       itemCount: widget.resultCubit.loadedBooks!.searchResults.length,
                     ),

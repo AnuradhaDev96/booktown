@@ -7,6 +7,8 @@ import '../ui/pages/splash_screen.dart';
 abstract class RouteNames {
   static const splashScreen = '/';
   static const homePage = '/home_page';
+
+  static const bookDetailsPage = '/book_details_page';
 }
 
 /// Declares the route names and the pages with arguments

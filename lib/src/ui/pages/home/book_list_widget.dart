@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/cubits/fetch_books_cubit.dart';
 import '../../../bloc/states/fetch_books_state.dart';
 import '../../../models/dto/book.dart';
+import 'book_list_item_widget.dart';
 
 class BookListWidget extends StatelessWidget {
   BookListWidget({super.key});
@@ -83,7 +84,7 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
       child: ListView.builder(
         shrinkWrap: true,
         controller: _scrollController,
-        itemBuilder: (context, index) => SizedBox(height: 140, child: Text("$index\n${_paginatedList[index].title}")),
+        itemBuilder: (context, index) => BookListItemWidget(bookDto: _paginatedList[index]),
         itemCount: _paginatedList.length,
       ),
     );
