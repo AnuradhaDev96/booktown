@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../bloc/cubits/search_book_result_cubit.dart';
 import '../../../bloc/cubits/switch_list_mode.dart';
 import '../../../config/app_styles.dart';
 
@@ -73,9 +74,11 @@ class HomeAppBar extends StatelessWidget {
 
   void _searchBookByTitle(String searchTerm, BuildContext context) {
     if (searchTerm.isNotEmpty) {
+      // Search books
+      BlocProvider.of<SearchBookResultCubit>(context).searchBook(searchTerm);
+
       // Switch to search mode
       BlocProvider.of<SwitchBookListModeCubit>(context).switchToSearchMode();
-      // Search books
     }
   }
 }

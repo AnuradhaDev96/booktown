@@ -81,6 +81,7 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
         return false;
       },
       child: ListView.builder(
+        shrinkWrap: true,
         controller: _scrollController,
         itemBuilder: (context, index) => SizedBox(height: 140, child: Text("$index\n${_paginatedList[index].title}")),
         itemCount: _paginatedList.length,
