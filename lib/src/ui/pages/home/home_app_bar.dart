@@ -32,7 +32,12 @@ class HomeAppBar extends StatelessWidget {
           // Update suffix icon based on text input
           Expanded(
             child: SearchAnchor(
+              isFullScreen: false,
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.search,
               searchController: _searchController,
+              viewHintText: 'Search books by title',
+              viewOnSubmitted: (value) => _searchBookByTitle(value, context),
               builder: (context, anchorController) {
                 return ValueListenableBuilder(
                   valueListenable: _searchTermController,
@@ -78,13 +83,18 @@ class HomeAppBar extends StatelessWidget {
                   },
                 );
               },
-              suggestionsBuilder: (context, anchorController) {
-                return recentSearch.map((r) => ListTile(
-                  title: Text(r),
-                  onTap: () {
-                    anchorController.closeView(r);
-                  },
-                ),).toList();
+              suggestionsBuilder: (suggestContext, anchorController) {
+                return recentSearch
+                    .map(
+                      (recentSearchItem) => ListTile(
+                        title: Text(recentSearchItem),
+                        onTap: () {
+                          anchorController.closeView(recentSearchItem);
+                          _searchBookByTitle(recentSearchItem, context);
+                        },
+                      ),
+                    )
+                    .toList();
               },
             ),
           ),
