@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../config/widget_keys.dart';
@@ -66,8 +67,30 @@ class BookDetailsPage extends StatelessWidget {
                 ),
               ],
             ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: AbsorbPointer(
+                child: RatingBar.builder(
+                  initialRating: double.tryParse(details.rating) ?? 0,
+                  itemCount: 5,
+                  unratedColor: Colors.grey,
+                  glowColor: Colors.white,
+                  itemSize: 20.sp,
+                  allowHalfRating: true,
+                  itemBuilder: (context, index) {
+                    return const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    );
+                  },
+                  tapOnlyMode: true,
+                  onRatingUpdate: (value) {},
+                ),
+              ),
+            ),
             Text(
               details.desc,
+              textAlign: TextAlign.left,
             ),
           ],
         ),
