@@ -38,6 +38,34 @@ class BookDetailsPage extends StatelessWidget {
               fit: BoxFit.fitHeight,
               details.image,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(details.title),
+                      Text(details.subtitle),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 15.w,
+                  height: 15.w,
+                  padding: const EdgeInsets.all(5),
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.black,
+                      )),
+                  child: Center(
+                    child: Text(details.price),
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),
