@@ -63,9 +63,12 @@ class BookDetailsPage extends StatelessWidget {
                   child: Center(
                     child: Text(details.price),
                   ),
-                )
+                ),
               ],
-            )
+            ),
+            Text(
+              details.desc,
+            ),
           ],
         ),
       ),
