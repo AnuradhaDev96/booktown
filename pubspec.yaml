@@ -35,10 +35,13 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.5.0+1
   flutter_bloc: ^8.1.6
+  flutter_rating_bar: ^4.0.1
   get_it: ^7.7.0
   loader_overlay: ^4.0.0
   logger: ^2.4.0
+  path: ^1.9.0
   responsive_sizer: ^3.3.1
+  rxdart: ^0.28.0
   shared_preferences: ^2.2.3
   sqflite: ^2.3.3+1
 

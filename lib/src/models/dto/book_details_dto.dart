@@ -1,5 +1,5 @@
 class BookDetailsDto {
-  final String title, subtitle, isbn13, price, image, desc, error;
+  final String title, subtitle, isbn13, price, image, desc, error, rating, url;
 
   BookDetailsDto.fromMap(Map<String, dynamic> map)
       : title = map['title'] ?? '',
@@ -7,7 +7,9 @@ class BookDetailsDto {
         isbn13 = map['isbn13'] ?? '',
         price = map['price'] ?? '',
         image = map['image'] ?? '',
+        url = map['url'] ?? '',
         desc = map['desc'] ?? '',
+        rating = map['rating'] ?? '',
         error = map['error'] ?? '';
 }
 

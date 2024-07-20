@@ -19,6 +19,10 @@ Recommend fvm (flutter version manager) to install or flutter upgrade.
 - Pagination for default new books is enabled for scrolling.
 - Pagination for search results is done while scrolling.
 
+## 3. Programming
+- Reactive programming with RxDart => **Package: [rxdart](https://pub.dev/packages/rxdart)**
+- Functional programming with Dartz => **Package: [dartz](https://pub.dev/packages/dartz)**
+
 # Additional Features
 1. Optional Haptic feedbacks when displaying snack bars.
 2. Interceptors written for dio client

@@ -1,6 +1,15 @@
 class BookDto {
   final String title, subtitle, isbn13, price, image, url;
 
+  BookDto({
+    required this.title,
+    required this.subtitle,
+    required this.isbn13,
+    required this.price,
+    required this.image,
+    required this.url,
+  });
+
   BookDto.fromMap(Map<String, dynamic> map)
       : title = map['title'] ?? '',
         subtitle = map['subtitle'] ?? '',
