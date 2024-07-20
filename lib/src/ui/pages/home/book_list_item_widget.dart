@@ -82,7 +82,7 @@ class BookListItemWidget extends StatelessWidget {
                 if (state is ErrorState) {
                   AlertUtils.showSnackBar(state.errorMessage, AlertTypes.error);
                 } else if (state is SuccessState) {
-                  showHeartAnimation(CupertinoIcons.heart_slash, context);
+                  showHeartAnimation(false, context);
                 }
               },
             ),
@@ -92,7 +92,7 @@ class BookListItemWidget extends StatelessWidget {
                 if (state is ErrorState) {
                   AlertUtils.showSnackBar(state.errorMessage, AlertTypes.error);
                 } else if (state is SuccessState) {
-                  showHeartAnimation(CupertinoIcons.heart_fill, context);
+                  showHeartAnimation(true, context);
                 }
               },
             ),
@@ -143,12 +143,13 @@ class BookListItemWidget extends StatelessWidget {
     );
   }
 
-  void showHeartAnimation(IconData icon, BuildContext context) {
+  void showHeartAnimation(bool isFilled, BuildContext context) {
     context.loaderOverlay.show(
       showOverlay: false,
       widgetBuilder: (_) => Icon(
-        icon,
-        size: 60.sp,
+        isFilled ? CupertinoIcons.heart_fill : CupertinoIcons.heart_slash,
+        size: 55.sp,
+        color: isFilled ? Colors.redAccent[200] : Colors.grey,
       ),
     );
     Future.delayed(
