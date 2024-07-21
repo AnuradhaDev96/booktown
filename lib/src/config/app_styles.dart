@@ -69,7 +69,7 @@ abstract class AppStyles {
     return ThemeData(
       brightness: Brightness.light,
       colorScheme: ColorScheme.fromSeed(seedColor: mainColor, brightness: Brightness.light),
-      scaffoldBackgroundColor: Colors.grey[100],
+      scaffoldBackgroundColor: Colors.grey[50],
       appBarTheme: const AppBarTheme(
         surfaceTintColor: mainColor,
         backgroundColor: mainColor,

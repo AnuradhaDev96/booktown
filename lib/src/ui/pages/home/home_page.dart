@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Theme.of(context).cardColor,
             surfaceTintColor: Theme.of(context).cardColor,
             flexibleSpace: HomeAppBar(),
+            elevation: 10,
           ),
           body: BlocBuilder<SwitchBookListModeCubit, bool>(builder: (context, isListMode) {
             return isListMode ? BookListWidget() : const BookSearchResultsWidget();
