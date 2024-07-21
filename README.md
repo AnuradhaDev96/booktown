@@ -38,6 +38,7 @@ Google drive folder with screenshots => [Google Drive](https://drive.google.com/
 2. Interceptors written for dio client
 3. When user double taps on book list item, Heart animation displays.
 4. Book search history (search history is saved in sqlite db)
+5. App icons for both ios and android versions are configured.
 
 # Best Practices
 Following resources are only for review purpose.
