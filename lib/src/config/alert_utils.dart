@@ -123,8 +123,8 @@ abstract class AlertMessages {
   static const String emptyNewBooks = 'Currently, there are no books listed.';
 
   // Search
-  static const String errorFetchingSearchQuery =
-      'Oops! Looks like there is an error in search.';
+  static const String errorFetchingSearchQuery = 'Oops! Looks like there is an error in search.';
+  static const String emptySearchQuery = 'Your search does not match any books. Keep searching!';
 
   // Book details
   static const String errorFetchingBookDetails = 'Oops! There is an error fetching your book details.';

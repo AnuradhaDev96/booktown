@@ -6,6 +6,7 @@ import '../../../bloc/cubits/fetch_books_cubit.dart';
 import '../../../bloc/states/fetch_books_state.dart';
 import '../../../models/dto/book.dart';
 import '../../widgets/book_list_shimmer_widget.dart';
+import '../../widgets/empty_list_placeholder_widget.dart';
 import '../../widgets/list_seperator_widget.dart';
 import 'book_list_item_widget.dart';
 
@@ -28,7 +29,7 @@ class BookListWidget extends StatelessWidget {
           } else if (state is BookListLoadedState) {
             return PaginatedBookListView(newBooks: state.newBooks);
           } else if (state is BookErrorState) {
-            return Text(state.message);
+            return EmptyListPlaceholderWidget(message: state.message);
           } else {
             return const SizedBox.shrink();
           }

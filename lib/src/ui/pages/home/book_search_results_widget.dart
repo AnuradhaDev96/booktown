@@ -4,6 +4,9 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
 import '../../../bloc/states/search_book_results_state.dart';
+import '../../../config/alert_utils.dart';
+import '../../widgets/book_list_shimmer_widget.dart';
+import '../../widgets/empty_list_placeholder_widget.dart';
 import '../../widgets/list_seperator_widget.dart';
 import 'book_list_item_widget.dart';
 
@@ -75,14 +78,27 @@ class _PaginatedBookResultListViewState extends State<PaginatedBookResultListVie
                     ),
                   ),
                 )
-              : const Text("Search results empty"),
+              : SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 20.h),
+                    child: const EmptyListPlaceholderWidget(message: AlertMessages.emptySearchQuery),
+                  ),
+                ),
           if (widget.currentState.isLoadingNextPage)
-            const SliverToBoxAdapter(
-              child: Text("Next page item shimmer"),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 4.h, left: 3.w, right: 3.w),
+                child: const BookListItemShimmer(),
+              ),
             ),
           if (widget.currentState.message != null && widget.currentState.message!.isNotEmpty)
             SliverToBoxAdapter(
-              child: Text(widget.currentState.message!),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Center(
+                  child: Text(widget.currentState.message!),
+                ),
+              ),
             ),
         ],
       ),
