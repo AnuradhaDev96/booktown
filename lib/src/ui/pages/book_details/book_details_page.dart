@@ -114,10 +114,10 @@ class BookDetailsPage extends StatelessWidget {
                     child: Center(
                       child: Text(
                         details.price,
-                        // '''\$12334.45''',
                         style: const TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.2,
                         ),
                       ),
                     ),
