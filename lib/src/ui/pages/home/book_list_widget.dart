@@ -79,23 +79,27 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: (notification) {
-        if (notification is ScrollEndNotification &&
-            notification.metrics.pixels == notification.metrics.maxScrollExtent) {
-          // User has reached the end of the list. Load more data
-          _loadNextPage();
-        }
-        return false;
-      },
-      child: ListView.separated(
-        padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
-        controller: _scrollController,
-        itemBuilder: (context, index) => BookListItemWidget(bookDto: _paginatedList[index]),
-        itemCount: _paginatedList.length,
-        separatorBuilder: (context, index) => const ListSeparatorWidget(),
+    final newBookList = BlocProvider.of<FetchBooksCubit>(context);
+    return RefreshIndicator(
+      onRefresh: () async =>  newBookList.fetchNewBooks(),
+      child: NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          if (notification is ScrollEndNotification &&
+              notification.metrics.pixels == notification.metrics.maxScrollExtent) {
+            // User has reached the end of the list. Load more data
+            _loadNextPage();
+          }
+          return false;
+        },
+        child: ListView.separated(
+          padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          controller: _scrollController,
+          itemBuilder: (context, index) => BookListItemWidget(bookDto: _paginatedList[index]),
+          itemCount: _paginatedList.length,
+          separatorBuilder: (context, index) => const ListSeparatorWidget(),
+        ),
       ),
     );
   }
