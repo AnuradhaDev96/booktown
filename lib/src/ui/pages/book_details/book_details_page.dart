@@ -94,15 +94,20 @@ class BookDetailsPage extends StatelessWidget {
                     // padding: const EdgeInsets.all(5),
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 1.8,
-                        ),
-                        gradient: const LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.8,
+                      ),
+                      gradient: const LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        colors: [
                           Color(0xFFE040FB),
                           Color(0xFF4FC3F7),
-                        ])),
+                        ],
+                      ),
+                    ),
                     child: Center(
                       child: Text(
                         details.price,
