@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../bloc/cubits/fetch_books_cubit.dart';
 import '../../../bloc/states/fetch_books_state.dart';
 import '../../../models/dto/book.dart';
+import '../../widgets/book_list_shimmer_widget.dart';
 import '../../widgets/list_seperator_widget.dart';
 import 'book_list_item_widget.dart';
 
@@ -22,6 +23,10 @@ class BookListWidget extends StatelessWidget {
           if (state is LoadingBooksState) {
             return const Text("Implement shimmer");
           } else if (state is BookListLoadedState) {
+            return ShimmerListWidget(
+              padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
+              itemCount: 10,
+            );
             return PaginatedBookListView(newBooks: state.newBooks);
           } else if (state is BookErrorState) {
             return Text(state.message);
