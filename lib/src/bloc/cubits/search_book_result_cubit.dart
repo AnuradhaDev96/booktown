@@ -52,10 +52,10 @@ class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
       );
 
       // Save search term
-      // GetIt.instance<BookSearchHistoryRepository>().addTermToRecentSearchedList(RecentSearchTermDto(
-      //   searchTerm: searchTerm,
-      //   viewedAt: DateTime.now(),
-      // ));
+      GetIt.instance<BookSearchHistoryRepository>().addTermToRecentSearchedList(RecentSearchTermDto(
+        searchTerm: searchTerm,
+        viewedAt: DateTime.now(),
+      ));
     });
   }
 

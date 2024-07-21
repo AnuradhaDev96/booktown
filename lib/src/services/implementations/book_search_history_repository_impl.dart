@@ -8,7 +8,7 @@ import '../sqflite_client.dart';
 
 class BookSearchHistoryRepositoryImpl implements BookSearchHistoryRepository {
   final _tableName = DbHelper.recentSearchTerms;
-  final _logger = Logger(printer: PrettyPrinter(printTime: true, methodCount: 0));
+  final _logger = Logger(printer: PrettyPrinter(methodCount: 0));
 
   @override
   Future<bool> addTermToRecentSearchedList(RecentSearchTermDto instance) async {
