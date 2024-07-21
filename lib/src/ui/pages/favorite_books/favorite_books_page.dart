@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/favorite_books_bloc.dart';
 import '../../../config/alert_utils.dart';
 import '../../../config/widget_keys.dart';
 import '../../../models/dto/favorite_book_dto.dart';
+import '../../widgets/list_seperator_widget.dart';
 import '../home/book_list_item_widget.dart';
 
 class FavoriteBooksPage extends StatelessWidget {
@@ -39,10 +41,14 @@ class FavoriteBooksPage extends StatelessWidget {
 
             if (snapshot.hasData) {
               if (snapshot.data != null && snapshot.data!.isNotEmpty) {
-                return ListView.builder(
+                return ListView.separated(
+                  padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => BookListItemWidget.fromFavorites(favoriteBook: snapshot.data![index]),
+                  itemBuilder: (context, index) =>
+                      BookListItemWidget.fromFavorites(favoriteBook: snapshot.data![index]),
                   itemCount: snapshot.data!.length,
+                  separatorBuilder: (context, index) => const ListSeparatorWidget(),
                 );
               } else {
                 return const Text(AlertMessages.favoriteBooksNotFound);

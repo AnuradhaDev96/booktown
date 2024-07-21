@@ -18,6 +18,7 @@ Recommend fvm (flutter version manager) to install or flutter upgrade.
 ## 2. Pagination
 - Pagination for default new books is enabled for scrolling.
 - Pagination for search results is done while scrolling.
+- PageStorage for suitable scrolling views to remember scroll position.
 
 ## 3. Programming
 - Reactive programming with RxDart => **Package: [rxdart](https://pub.dev/packages/rxdart)**

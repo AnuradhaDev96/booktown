@@ -84,7 +84,7 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
         return false;
       },
       child: ListView.separated(
-        padding: EdgeInsets.only(top: 4.h, bottom: 8.h),
+        padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         controller: _scrollController,

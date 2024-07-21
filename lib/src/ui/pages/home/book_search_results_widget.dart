@@ -56,12 +56,15 @@ class _PaginatedBookResultListViewState extends State<PaginatedBookResultListVie
       onNotification: onNotificationCallback,
       child: CustomScrollView(
         controller: _scrollController,
+        physics: const BouncingScrollPhysics(),
         slivers: [
           (widget.resultCubit.loadedBooks != null && widget.resultCubit.loadedBooks!.searchResults.isNotEmpty)
               ? SliverToBoxAdapter(
                   child: NotificationListener<ScrollNotification>(
                     onNotification: onNotificationCallback,
                     child: ListView.separated(
+                      padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
+                      physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
                       controller: _scrollController,
                       itemBuilder: (context, index) => BookListItemWidget(
