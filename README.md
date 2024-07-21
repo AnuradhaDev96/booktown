@@ -23,6 +23,7 @@ Recommend fvm (flutter version manager) to install or flutter upgrade.
 ## 3. Programming
 - Reactive programming with RxDart => **Package: [rxdart](https://pub.dev/packages/rxdart)**
 - Functional programming with Dartz => **Package: [dartz](https://pub.dev/packages/dartz)**
+- Pass functions as params => Refer HomeAppBar widget.
 
 ## 4. Animations
 - Zoom out (ScaleTransition) when launching home page.

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rect_getter/rect_getter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
@@ -10,7 +11,11 @@ import '../../../config/app_styles.dart';
 import '../../../config/widget_keys.dart';
 
 class HomeAppBar extends StatelessWidget {
-  HomeAppBar({super.key});
+  HomeAppBar({super.key, required this.heartIconRectKey, this.onHeartButtonPressed});
+  final GlobalKey<RectGetterState> heartIconRectKey;
+
+  /// Pass function as parameter
+  final Function()? onHeartButtonPressed;
 
   /// This controller is used for ValueListenableBuilder to listen changes in text
   final TextEditingController _searchTermController = TextEditingController();
@@ -104,9 +109,12 @@ class HomeAppBar extends StatelessWidget {
             ),
           ),
 
-          IconButton(
-            onPressed: () => WidgetKeys.mainNavKey.currentState!.pushNamed(RouteNames.favoriteBooksPage),
-            icon: const Icon(CupertinoIcons.heart_fill),
+          RectGetter(
+            key: heartIconRectKey,
+            child: IconButton(
+              onPressed: onHeartButtonPressed,
+              icon: const Icon(CupertinoIcons.heart_fill),
+            ),
           ),
         ],
       ),

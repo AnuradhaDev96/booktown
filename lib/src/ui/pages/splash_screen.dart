@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../config/app_colors.dart';
 import '../../config/app_routes.dart';
 import '../../config/widget_keys.dart';
 
@@ -36,10 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
         width: 100.w,
         height: 100.h,
         decoration: const BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [
-          Color(0xFF0180C5),
-          Color(0xFF20B9CD),
-        ])),
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [AppColors.gradientBlue1, AppColors.gradientBlue2],
+          ),
+        ),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -60,12 +63,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 'IT, Programming\n& Computer Science Books',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white54,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.sp,
-                  letterSpacing: -0.8,
-                  height: 1.2
-                ),
+                    color: Colors.white54,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.sp,
+                    letterSpacing: -0.8,
+                    height: 1.2),
               ),
             ),
           ],
