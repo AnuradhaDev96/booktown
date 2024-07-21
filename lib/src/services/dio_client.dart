@@ -39,27 +39,21 @@ class CommonInterceptor implements Interceptor {
     // Handle connection error
     if (err.type == DioExceptionType.connectionError) {
       AlertUtils.showSnackBar("Error connecting to server", AlertTypes.warning, duration: const Duration(seconds: 6));
-    }
-
-    // Handle timeout error
-    if (err.type == DioExceptionType.connectionTimeout) {
+    } else if (err.type == DioExceptionType.connectionTimeout) {
+      // Handle timeout error
       AlertUtils.showSnackBar(
         "Unable to establish a connection. Please try again later!",
         AlertTypes.warning,
         duration: const Duration(seconds: 5),
       );
-    }
-
-    // Handle timeout error
-    if (err.type == DioExceptionType.receiveTimeout) {
+    } else if (err.type == DioExceptionType.receiveTimeout) {
+      // Handle timeout error
       AlertUtils.showSnackBar(
         "This is taking longer than expected.\nCheck your internet connection.",
         AlertTypes.warning,
         duration: const Duration(seconds: 5),
       );
-    }
-
-    if (err.type == DioExceptionType.badResponse) {
+    } else if (err.type == DioExceptionType.badResponse) {
       var responseData = err.response?.data;
       if (responseData != null) {
         var messages = responseData["message"];
@@ -75,9 +69,7 @@ class CommonInterceptor implements Interceptor {
             AlertUtils.showSnackBar(errorPayload.toString(), AlertTypes.error);
           } else if (messages.isNotEmpty && messages.length == 1) {
             // Contains only one message
-            if (messages.first.toString().toLowerCase() != "token has expired") {
-              AlertUtils.showSnackBar(messages.first.toString(), AlertTypes.error);
-            }
+            AlertUtils.showSnackBar(messages.first.toString(), AlertTypes.error);
           } else {
             AlertUtils.showSnackBar("Something went wrong!", AlertTypes.error);
           }
@@ -85,6 +77,8 @@ class CommonInterceptor implements Interceptor {
           AlertUtils.showSnackBar(messages ?? "Something went wrong!", AlertTypes.error);
         }
       }
+    } else {
+      AlertUtils.showSnackBar(err.type.name, AlertTypes.error);
     }
 
     // continue
