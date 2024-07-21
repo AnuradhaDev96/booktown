@@ -68,11 +68,14 @@ class BookDetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              width: 100.w,
-              height: 30.h,
-              fit: BoxFit.fitHeight,
-              details.image,
+            Hero(
+              tag: "Hero-${details.isbn13}",
+              child: Image.network(
+                width: 100.w,
+                height: 30.h,
+                fit: BoxFit.fitHeight,
+                details.image,
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 3.w, right: 3.w),

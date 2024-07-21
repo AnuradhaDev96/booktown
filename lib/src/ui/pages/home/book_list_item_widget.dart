@@ -109,11 +109,14 @@ class BookListItemWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                bookDto.image,
-                width: 20.w,
-                height: 18.w,
-                fit: BoxFit.fitWidth,
+              Hero(
+                tag: "Hero-${bookDto.isbn13}",
+                child: Image.network(
+                  bookDto.image,
+                  width: 20.w,
+                  height: 18.w,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
               Expanded(
                 child: Column(
