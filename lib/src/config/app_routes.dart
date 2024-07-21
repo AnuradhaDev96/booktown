@@ -28,7 +28,7 @@ abstract class RouteConfig {
           settings: settings,
         );
       case RouteNames.favoriteBooksPage:
-        return MaterialPageRoute(builder: (context) => const FavoriteBooksPage(), settings: settings);
+        return _commonRoute(widget: const FavoriteBooksPage(), settings: settings);
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen(), settings: settings);
     }
@@ -57,4 +57,28 @@ abstract class RouteConfig {
           );
         },
       );
+
+  static Route<dynamic>? _commonRoute({required RouteSettings settings, required Widget widget}) => PageRouteBuilder(
+    pageBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        ) =>
+    widget,
+    settings: settings,
+    transitionDuration: const Duration(milliseconds: 300),
+    reverseTransitionDuration: const Duration(milliseconds: 300),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      final tween = Tween(begin: begin, end: end);
+      final offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
 }

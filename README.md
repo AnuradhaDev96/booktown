@@ -24,6 +24,7 @@ Recommend fvm (flutter version manager) to install or flutter upgrade.
 - Reactive programming with RxDart => **Package: [rxdart](https://pub.dev/packages/rxdart)**
 - Functional programming with Dartz => **Package: [dartz](https://pub.dev/packages/dartz)**
 - Pass functions as params => Refer HomeAppBar widget.
+- For searching strings with multiple words => Used `Uri.encodeQueryComponent(query)`
 
 ## 4. Animations
 - Zoom out (ScaleTransition) when launching home page.
@@ -33,6 +34,7 @@ Recommend fvm (flutter version manager) to install or flutter upgrade.
 1. Optional Haptic feedbacks when displaying snack bars.
 2. Interceptors written for dio client
 3. When user double taps on book list item, Heart animation displays.
+4. Book search history (search history is saved in sqlite db)
 
 # Best Practices
 Following resources are only for review purpose.

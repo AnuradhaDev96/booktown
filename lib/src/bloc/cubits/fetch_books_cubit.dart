@@ -8,6 +8,7 @@ class FetchBooksCubit extends Cubit<FetchBooksState> {
   FetchBooksCubit() : super(LoadingBooksState());
 
   void fetchNewBooks() {
+    emit(LoadingBooksState());
     GetIt.instance<BookRepository>().getNewBooks().then((result) {
       result.fold(
         (list) => emit(BookListLoadedState(newBooks: list)),

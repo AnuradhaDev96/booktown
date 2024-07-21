@@ -12,4 +12,7 @@ abstract class BookRepository {
 
   /// Get book details by isbn number
   Future<Either<BookDetailsDto, String>> getBookDetailsByIsbnNo(String isbn);
+
+  /// Get book authors by isbn number
+  Future<BookAuthorDto?> getBookAuthorsIsbnNo(String isbn);
 }

@@ -24,8 +24,9 @@ class BookRepositoryImpl implements BookRepository {
   @override
   Future<Either<BookPageResponseDto, String>> searchBooksByTitle(String query, String? page) async {
     try {
+      String encodedString = Uri.encodeQueryComponent(query);
       var response = await GetIt.instance<DioClient>().dio.get(
-            'search/$query',
+            'search/$encodedString',
             queryParameters: page == null ? null : {'page': page},
           );
 
@@ -51,6 +52,23 @@ class BookRepositoryImpl implements BookRepository {
       }
     } catch (e) {
       return right(AlertMessages.errorFetchingNewBooks);
+    }
+  }
+
+  @override
+  Future<BookAuthorDto?> getBookAuthorsIsbnNo(String isbn) async {
+    try {
+      var response = await GetIt.instance<DioClient>().dio.get('books/$isbn');
+
+      final BookAuthorDto authorDto = BookAuthorDto.fromMap(response.data);
+
+      if (authorDto.error != "0") {
+        return null;
+      } else {
+        return authorDto;
+      }
+    } catch (e) {
+      return null;
     }
   }
 }

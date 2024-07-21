@@ -13,7 +13,9 @@ import '../../../config/alert_utils.dart';
 import '../../../config/app_routes.dart';
 import '../../../config/widget_keys.dart';
 import '../../../models/dto/book.dart';
+import '../../../models/dto/book_details_dto.dart';
 import '../../../models/dto/favorite_book_dto.dart';
+import '../../../services/repositories/book_repository.dart';
 import '../../widgets/manage_favorite_books_icons.dart';
 
 class BookListItemWidget extends StatelessWidget {
@@ -57,13 +59,15 @@ class BookListItemWidget extends StatelessWidget {
       ],
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onDoubleTap: enableDoubleTapControlForFav ? () {
-          if (GetIt.instance<FavoriteBooksBloc>().favoriteBooksValue.any((fav) => fav.isbn13 == bookDto.isbn13)) {
-            _removeFromFavCubit.removeBookFromFavorites(bookDto.isbn13);
-          } else {
-            _addToFavCubit.addToFavorites(serverBook: bookDto);
-          }
-        } : null,
+        onDoubleTap: enableDoubleTapControlForFav
+            ? () {
+                if (GetIt.instance<FavoriteBooksBloc>().favoriteBooksValue.any((fav) => fav.isbn13 == bookDto.isbn13)) {
+                  _removeFromFavCubit.removeBookFromFavorites(bookDto.isbn13);
+                } else {
+                  _addToFavCubit.addToFavorites(serverBook: bookDto);
+                }
+              }
+            : null,
         onTap: () {
           _fetchDetailsCubit.fetchBookDetails(bookDto.isbn13);
           context.loaderOverlay.show();
@@ -123,7 +127,18 @@ class BookListItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(bookDto.title, style: Theme.of(context).textTheme.titleMedium),
-                    Text(bookDto.subtitle),
+                    FutureBuilder<BookAuthorDto?>(
+                        future: GetIt.instance<BookRepository>().getBookAuthorsIsbnNo(bookDto.isbn13),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return const SizedBox.shrink();
+                          }
+
+                          if (snapshot.hasData && snapshot.data != null) {
+                            return Text(snapshot.data!.authors);
+                          }
+                          return const SizedBox.shrink();
+                        }),
                   ],
                 ),
               ),

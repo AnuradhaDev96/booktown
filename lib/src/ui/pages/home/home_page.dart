@@ -28,8 +28,8 @@ class _HomePageState extends State<HomePage> {
   late final GlobalKey<RectGetterState> heartIconRectKey = RectGetter.createGlobalKey();
 
   // durations
-  final animationDuration = const Duration(milliseconds: 1500);
-  final navigationDelay = const Duration(milliseconds: 400);
+  final animationDuration = const Duration(milliseconds: 800);
+  final navigationDelay = const Duration(milliseconds: 200);
 
   @override
   void initState() {

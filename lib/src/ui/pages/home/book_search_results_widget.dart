@@ -197,7 +197,7 @@ class SearchResultAppBar extends StatelessWidget {
                               style: TextButton.styleFrom(
                                   elevation: 2,
                                   padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 3.5),
-                                  textStyle: TextStyle(
+                                  textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
                                     fontSize: 14.5.sp,
                                     fontWeight: FontWeight.w700,
                                     letterSpacing: -0.4,
