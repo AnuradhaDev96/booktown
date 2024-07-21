@@ -56,11 +56,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void navigateNextPage() {
-    WidgetKeys.mainNavKey.currentState!.pushNamed(RouteNames.favoriteBooksPage).then((_) {
-      setState(() {
-        rect = null;
-      });
+    setState(() {
+      rect = null;
     });
+    WidgetKeys.mainNavKey.currentState!.pushNamed(RouteNames.favoriteBooksPage);
   }
 
   Widget get ripple {

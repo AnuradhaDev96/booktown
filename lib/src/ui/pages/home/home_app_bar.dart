@@ -97,7 +97,7 @@ class HomeAppBar extends StatelessWidget {
                         title: Text(recentSearchItem),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          anchorController.closeView(recentSearchItem);
+                          anchorController.closeView(null);
                           _searchBookByTitle(recentSearchItem, context);
                         },
                       ),
