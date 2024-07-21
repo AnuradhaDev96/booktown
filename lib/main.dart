@@ -44,9 +44,9 @@ class BookTownApp extends StatelessWidget {
               initialRoute: RouteNames.splashScreen,
               onGenerateRoute: (settings) => RouteConfig.generateRoute(settings),
             );
-          }
+          },
         );
-      }
+      },
     );
   }
 }
