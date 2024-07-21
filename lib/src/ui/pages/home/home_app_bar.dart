@@ -73,7 +73,7 @@ class HomeAppBar extends StatelessWidget {
                             ? IconButton(
                                 onPressed: () {
                                   _searchTermController.clear();
-                                  BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
+                                  // BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
                                 },
                                 icon: const Icon(Icons.close),
                               )
