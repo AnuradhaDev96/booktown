@@ -21,12 +21,11 @@ class BookListWidget extends StatelessWidget {
       child: BlocBuilder<FetchBooksCubit, FetchBooksState>(
         builder: (BuildContext context, state) {
           if (state is LoadingBooksState) {
-            return const Text("Implement shimmer");
-          } else if (state is BookListLoadedState) {
             return ShimmerListWidget(
               padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
               itemCount: 10,
             );
+          } else if (state is BookListLoadedState) {
             return PaginatedBookListView(newBooks: state.newBooks);
           } else if (state is BookErrorState) {
             return Text(state.message);

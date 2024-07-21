@@ -10,13 +10,13 @@ class BookListItemShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color highlightColor = (Theme.of(context).brightness == Brightness.dark) ? Colors.grey[700]! : Colors.white60;
     final Color baseColor = (Theme.of(context).brightness == Brightness.dark) ? Colors.grey[900]! : const Color(0xFFCDCDCD);
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Shimmer.fromColors(
-          highlightColor: highlightColor,
-          baseColor: baseColor,
-          child: Container(
+    return Shimmer.fromColors(
+      highlightColor: highlightColor,
+      baseColor: baseColor,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
             width: 20.w,
             height: 20.w,
             margin: EdgeInsets.only(right: 2.w),
@@ -25,42 +25,44 @@ class BookListItemShimmer extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
           ),
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 10,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(3.5),
-                  color: Colors.grey,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 20,
+                  margin: const EdgeInsets.only(bottom: 6),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3.5),
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-              Container(
-                height: 5,
-                width: 75.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(3.5),
-                  color: Colors.grey,
+                Container(
+                  height: 8,
+                  width: 75.w,
+                  margin: const EdgeInsets.only(bottom: 4),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3.5),
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-              Container(
-                height: 5,
-                width: 40.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(3.5),
-                  color: Colors.grey,
+                Container(
+                  height: 8,
+                  width: 40.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3.5),
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(CupertinoIcons.heart),
-        )
-      ],
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(CupertinoIcons.heart_fill),
+          )
+        ],
+      ),
     );
   }
 }
