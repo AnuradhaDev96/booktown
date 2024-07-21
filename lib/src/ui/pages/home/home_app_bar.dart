@@ -28,7 +28,9 @@ class HomeAppBar extends StatelessWidget {
         children: [
           IconButton(
             icon: const Icon(Icons.menu_rounded),
-            onPressed: () {},
+            onPressed: () {
+              WidgetKeys.homePageKey.currentState!.openDrawer();
+            },
           ),
 
           // Update suffix icon based on text input
@@ -91,6 +93,7 @@ class HomeAppBar extends StatelessWidget {
                       (recentSearchItem) => ListTile(
                         title: Text(recentSearchItem),
                         onTap: () {
+                          FocusScope.of(context).unfocus();
                           anchorController.closeView(recentSearchItem);
                           _searchBookByTitle(recentSearchItem, context);
                         },

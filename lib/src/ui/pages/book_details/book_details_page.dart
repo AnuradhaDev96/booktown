@@ -21,16 +21,19 @@ class BookDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        // leadingWidth: 20.w,
+        leadingWidth: 20.w,
         centerTitle: true,
-        leading: TextButton.icon(
-          onPressed: () => WidgetKeys.mainNavKey.currentState!.pop(),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 16,
+        leading: Padding(
+          padding: EdgeInsets.only(left: 2.w),
+          child: TextButton.icon(
+            onPressed: () => WidgetKeys.mainNavKey.currentState!.pop(),
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 16,
+            ),
+            label: const Text('Back'),
+            style: TextButton.styleFrom(padding: EdgeInsets.zero),
           ),
-          label: const Text('Back'),
-          style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
         ),
         title: const Text("Book Details"),
         actions: [
@@ -71,58 +74,84 @@ class BookDetailsPage extends StatelessWidget {
               fit: BoxFit.fitHeight,
               details.image,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(details.title),
-                      Text(details.subtitle),
-                    ],
+            Padding(
+              padding: EdgeInsets.only(left: 3.w, right: 3.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(details.title, style: Theme.of(context).textTheme.titleLarge),
+                        Text(details.subtitle),
+                      ],
+                    ),
                   ),
-                ),
-                Container(
-                  width: 15.w,
-                  height: 15.w,
-                  padding: const EdgeInsets.all(5),
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
+                  Container(
+                    width: 18.w,
+                    height: 18.w,
+                    // padding: const EdgeInsets.all(5),
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: Colors.black,
-                      )),
-                  child: Center(
-                    child: Text(details.price),
+                        color: Colors.grey,
+                        width: 1.8,
+                      ),
+                      gradient: const LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        colors: [
+                          Color(0xFFE040FB),
+                          Color(0xFF4FC3F7),
+                        ],
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        details.price,
+                        // '''\$12334.45''',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Align(
               alignment: Alignment.centerLeft,
-              child: AbsorbPointer(
-                child: RatingBar.builder(
-                  initialRating: double.tryParse(details.rating) ?? 0,
-                  itemCount: 5,
-                  unratedColor: Colors.grey,
-                  glowColor: Colors.white,
-                  itemSize: 20.sp,
-                  allowHalfRating: true,
-                  itemBuilder: (context, index) {
-                    return const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    );
-                  },
-                  tapOnlyMode: true,
-                  onRatingUpdate: (value) {},
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 3.5.w),
+                child: AbsorbPointer(
+                  child: RatingBar.builder(
+                    initialRating: double.tryParse(details.rating) ?? 0,
+                    itemCount: 5,
+                    unratedColor: Colors.grey,
+                    glowColor: Colors.white,
+                    itemSize: 20.sp,
+                    allowHalfRating: true,
+                    itemBuilder: (context, index) {
+                      return const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      );
+                    },
+                    tapOnlyMode: true,
+                    onRatingUpdate: (value) {},
+                  ),
                 ),
               ),
             ),
-            Text(
-              details.desc,
-              textAlign: TextAlign.left,
+            Padding(
+              padding: EdgeInsets.only(left: 3.w, right: 3.w),
+              child: Text(
+                details.desc,
+                textAlign: TextAlign.left,
+              ),
             ),
           ],
         ),

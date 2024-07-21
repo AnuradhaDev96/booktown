@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import 'src/bloc/cubits/favorite_books_bloc.dart';
+import 'src/bloc/cubits/toggle_theme_bloc.dart';
 import 'src/services/dio_client.dart';
 import 'src/services/implementations/book_repository_impl.dart';
 import 'src/services/implementations/favorite_books_repository_impl.dart';
@@ -23,5 +24,6 @@ abstract class DependencyInjector {
 
     // Blocs
     GetIt.instance.registerLazySingleton<FavoriteBooksBloc>(() => FavoriteBooksBloc());
+    GetIt.instance.registerLazySingleton<ToggleThemeBloc>(() => ToggleThemeBloc());
   }
 }

@@ -40,7 +40,7 @@ abstract class AlertUtils {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 3),
-                      child: Icon(alertType.iconData, color: Colors.green),
+                      child: Icon(alertType.iconData, color: alertType.borderColor),
                     ),
                     Text(
                       message,
@@ -123,8 +123,8 @@ abstract class AlertMessages {
   static const String emptyNewBooks = 'Currently, there are no books listed.';
 
   // Search
-  static const String errorFetchingSearchQuery =
-      'Oops! Looks like there is an error in search.';
+  static const String errorFetchingSearchQuery = 'Oops! Looks like there is an error in search.';
+  static const String emptySearchQuery = 'Your search does not match any books. Keep searching!';
 
   // Book details
   static const String errorFetchingBookDetails = 'Oops! There is an error fetching your book details.';
@@ -132,5 +132,5 @@ abstract class AlertMessages {
 
   // Favorite books
   static const String errorFetchingFavoriteBooks = 'Oops! There is an error fetching your favorite books.';
-  static const String favoriteBooksNotFound = 'You don\'t have any favorite books.';
+  static const String favoriteBooksNotFound = 'You don\'t have any\nfavorite books.';
 }
