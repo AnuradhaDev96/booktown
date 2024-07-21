@@ -79,9 +79,9 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
 
   @override
   Widget build(BuildContext context) {
-    final newBookList = BlocProvider.of<FetchBooksCubit>(context);
+    final newBookListCubit = BlocProvider.of<FetchBooksCubit>(context);
     return RefreshIndicator(
-      onRefresh: () async =>  newBookList.fetchNewBooks(),
+      onRefresh: () async =>  newBookListCubit.fetchNewBooks(),
       child: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
           if (notification is ScrollEndNotification &&
