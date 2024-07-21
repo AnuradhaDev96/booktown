@@ -89,17 +89,29 @@ class BookDetailsPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 15.w,
-                    height: 15.w,
-                    padding: const EdgeInsets.all(5),
+                    width: 18.w,
+                    height: 18.w,
+                    // padding: const EdgeInsets.all(5),
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Colors.black,
-                        )),
+                          color: Colors.grey,
+                          width: 1.8,
+                        ),
+                        gradient: const LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
+                          Color(0xFFE040FB),
+                          Color(0xFF4FC3F7),
+                        ])),
                     child: Center(
-                      child: Text(details.price),
+                      child: Text(
+                        details.price,
+                        // '''\$12334.45''',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ),
                 ],
