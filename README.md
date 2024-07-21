@@ -47,3 +47,4 @@ All the tasks related to development are here.
 2. [Closed Task List](https://github.com/AnuradhaDev96/booktown/issues?q=is%3Aissue+is%3Aclosed)
 3. [Branch List](https://github.com/AnuradhaDev96/booktown/branches)
 4. Line length for dart is 120 (set in Android Studio)
+5. [Pull requests](https://github.com/AnuradhaDev96/booktown/pulls?q=is%3Apr+is%3Aclosed)
