@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../config/app_routes.dart';
+import '../../config/widget_keys.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -17,13 +20,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // Display home page
   void _navigateHome() {
-    // Future.delayed(
-    //   const Duration(milliseconds: 1500),
-    //   () => WidgetKeys.mainNavKey.currentState!.pushNamedAndRemoveUntil(
-    //     RouteNames.homePage,
-    //     (Route<dynamic> route) => false,
-    //   ),
-    // );
+    Future.delayed(
+      const Duration(milliseconds: 1500),
+      () => WidgetKeys.mainNavKey.currentState!.pushNamedAndRemoveUntil(
+        RouteNames.homePage,
+        (Route<dynamic> route) => false,
+      ),
+    );
   }
 
   @override
