@@ -25,7 +25,8 @@ Recommend fvm (flutter version manager) to install or flutter upgrade.
 - Functional programming with Dartz => **Package: [dartz](https://pub.dev/packages/dartz)**
 
 ## 4. Animations
-- Zoom out (ScaleTransition) when launching home page
+- Zoom out (ScaleTransition) when launching home page.
+- Hero animations when navigating from book list item to book details page.
 
 # Additional Features
 1. Optional Haptic feedbacks when displaying snack bars.
