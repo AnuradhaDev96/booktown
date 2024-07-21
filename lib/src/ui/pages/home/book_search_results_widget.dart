@@ -21,7 +21,10 @@ class BookSearchResultsWidget extends StatelessWidget {
       bloc: searchResultCubit,
       builder: (BuildContext context, state) {
         if (state is InitializingSearchState) {
-          return const Text("Implement shimmer");
+          return ShimmerListWidget(
+            padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
+            itemCount: 10,
+          );
         } else if (state is BookResultsLoadedState) {
           return PaginatedBookResultListView(currentState: state, resultCubit: searchResultCubit);
         }
