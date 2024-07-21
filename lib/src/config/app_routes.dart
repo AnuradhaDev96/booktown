@@ -20,7 +20,7 @@ abstract class RouteConfig {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.homePage:
-        return MaterialPageRoute(builder: (context) => const HomePage(), settings: settings);
+        return _launchRoute(settings);
       case RouteNames.bookDetailsPage:
         var arguments = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
@@ -33,4 +33,28 @@ abstract class RouteConfig {
         return MaterialPageRoute(builder: (context) => const SplashScreen(), settings: settings);
     }
   }
+
+  static Route<dynamic>? _launchRoute(RouteSettings settings) => PageRouteBuilder(
+        pageBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+        ) =>
+            const HomePage(),
+        settings: settings,
+        transitionDuration: const Duration(milliseconds: 1200),
+        reverseTransitionDuration: const Duration(milliseconds: 500),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const curve = Curves.fastEaseInToSlowEaseOut;
+          const reverseCurve = Curves.fastOutSlowIn;
+
+          final scaleTween = Tween<double>(begin: 1.5, end: 1.0);
+          final scaleAnimation = CurvedAnimation(parent: animation, curve: curve, reverseCurve: reverseCurve);
+
+          return ScaleTransition(
+            scale: scaleTween.animate(scaleAnimation),
+            child: child,
+          );
+        },
+      );
 }
