@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../config/app_routes.dart';
 import '../../config/widget_keys.dart';
@@ -19,20 +20,42 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // Display home page
   void _navigateHome() {
-    Future.delayed(
-      const Duration(milliseconds: 1500),
-      () => WidgetKeys.mainNavKey.currentState!.pushNamedAndRemoveUntil(
-        RouteNames.homePage,
-        (Route<dynamic> route) => false,
-      ),
-    );
+    // Future.delayed(
+    //   const Duration(milliseconds: 1500),
+    //   () => WidgetKeys.mainNavKey.currentState!.pushNamedAndRemoveUntil(
+    //     RouteNames.homePage,
+    //     (Route<dynamic> route) => false,
+    //   ),
+    // );
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("BookTown"),
+    return Scaffold(
+      body: Container(
+        width: 100.w,
+        height: 100.h,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color(0xFF0180C5),
+              Color(0xFF20B9CD),
+            ]
+          )
+        ),
+        child: Center(
+          child: Text(
+            "Booktown",
+            style: TextStyle(
+              letterSpacing: -2,
+              color: Colors.white,
+              fontSize: 29.sp,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
       ),
     );
   }
