@@ -93,6 +93,7 @@ class HomeAppBar extends StatelessWidget {
                       (recentSearchItem) => ListTile(
                         title: Text(recentSearchItem),
                         onTap: () {
+                          FocusScope.of(context).unfocus();
                           anchorController.closeView(recentSearchItem);
                           _searchBookByTitle(recentSearchItem, context);
                         },
