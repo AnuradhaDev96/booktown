@@ -51,6 +51,7 @@ class HomeAppBar extends StatelessWidget {
                   builder: (context, searchTerm, _) {
                     return TextFormField(
                       controller: _searchTermController,
+                      autofocus: false,
                       textInputAction: TextInputAction.search,
                       onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       onFieldSubmitted: (value) => _searchBookByTitle(value, context),

@@ -4,6 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/toggle_theme_bloc.dart';
 import '../../../config/app_colors.dart';
+import '../../../config/widget_keys.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
@@ -39,7 +40,7 @@ class HomeDrawer extends StatelessWidget {
                         },
                       );
                     }),
-                const Divider(),
+                const Divider(thickness: 1.5),
               ],
             ),
             Row(
@@ -47,13 +48,13 @@ class HomeDrawer extends StatelessWidget {
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.only(left: 2.w, right: 2.w, bottom: 3.h),
-                    padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.5.w),
+                    padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.8.w),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [AppColors.gradientBlue1, AppColors.gradientBlue2]),
-                      borderRadius: BorderRadius.circular(14.sp),
+                      borderRadius: BorderRadius.circular(16.sp),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,6 +93,13 @@ class HomeDrawer extends StatelessWidget {
                               letterSpacing: -0.03,
                               height: 1.1,
                             ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: ElevatedButton(
+                            onPressed: () => WidgetKeys.homePageKey.currentState!.closeDrawer(),
+                            child: const Text("Browse books"),
                           ),
                         ),
                       ],
