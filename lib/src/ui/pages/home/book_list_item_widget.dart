@@ -55,8 +55,8 @@ class BookListItemWidget extends StatelessWidget {
         BlocProvider<RemoveFavoriteBookCubit>(create: (context) => _removeFromFavCubit),
         BlocProvider<AddFavoriteBookCubit>(create: (context) => _addToFavCubit),
       ],
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
         onDoubleTap: enableDoubleTapControlForFav ? () {
           if (GetIt.instance<FavoriteBooksBloc>().favoriteBooksValue.any((fav) => fav.isbn13 == bookDto.isbn13)) {
             _removeFromFavCubit.removeBookFromFavorites(bookDto.isbn13);
