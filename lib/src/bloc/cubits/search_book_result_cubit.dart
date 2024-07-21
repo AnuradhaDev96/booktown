@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../models/dto/recent_search_term_dto.dart';
 import '../../models/view_models/search_book_result.dart';
 import '../../services/repositories/book_repository.dart';
+import '../../services/repositories/book_search_history_repository.dart';
 import '../states/search_book_results_state.dart';
 
 class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
@@ -48,6 +50,12 @@ class SearchBookResultCubit extends Cubit<SearchBookResultsState> {
         },
         (message) => emit(BookResultsLoadedState(message: message)),
       );
+
+      // Save search term
+      // GetIt.instance<BookSearchHistoryRepository>().addTermToRecentSearchedList(RecentSearchTermDto(
+      //   searchTerm: searchTerm,
+      //   viewedAt: DateTime.now(),
+      // ));
     });
   }
 

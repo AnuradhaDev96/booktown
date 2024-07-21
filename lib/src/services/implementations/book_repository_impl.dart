@@ -24,8 +24,9 @@ class BookRepositoryImpl implements BookRepository {
   @override
   Future<Either<BookPageResponseDto, String>> searchBooksByTitle(String query, String? page) async {
     try {
+      String encodedString = Uri.encodeQueryComponent(query);
       var response = await GetIt.instance<DioClient>().dio.get(
-            'search/$query',
+            'search/$encodedString',
             queryParameters: page == null ? null : {'page': page},
           );
 
