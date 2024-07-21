@@ -124,28 +124,34 @@ class BookDetailsPage extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.centerLeft,
-              child: AbsorbPointer(
-                child: RatingBar.builder(
-                  initialRating: double.tryParse(details.rating) ?? 0,
-                  itemCount: 5,
-                  unratedColor: Colors.grey,
-                  glowColor: Colors.white,
-                  itemSize: 20.sp,
-                  allowHalfRating: true,
-                  itemBuilder: (context, index) {
-                    return const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    );
-                  },
-                  tapOnlyMode: true,
-                  onRatingUpdate: (value) {},
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 3.5.w),
+                child: AbsorbPointer(
+                  child: RatingBar.builder(
+                    initialRating: double.tryParse(details.rating) ?? 0,
+                    itemCount: 5,
+                    unratedColor: Colors.grey,
+                    glowColor: Colors.white,
+                    itemSize: 20.sp,
+                    allowHalfRating: true,
+                    itemBuilder: (context, index) {
+                      return const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      );
+                    },
+                    tapOnlyMode: true,
+                    onRatingUpdate: (value) {},
+                  ),
                 ),
               ),
             ),
-            Text(
-              details.desc,
-              textAlign: TextAlign.left,
+            Padding(
+              padding: EdgeInsets.only(left: 3.w, right: 3.w),
+              child: Text(
+                details.desc,
+                textAlign: TextAlign.left,
+              ),
             ),
           ],
         ),
