@@ -54,4 +54,21 @@ class BookRepositoryImpl implements BookRepository {
       return right(AlertMessages.errorFetchingNewBooks);
     }
   }
+
+  @override
+  Future<BookAuthorDto?> getBookAuthorsIsbnNo(String isbn) async {
+    try {
+      var response = await GetIt.instance<DioClient>().dio.get('books/$isbn');
+
+      final BookAuthorDto authorDto = BookAuthorDto.fromMap(response.data);
+
+      if (authorDto.error != "0") {
+        return null;
+      } else {
+        return authorDto;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
 }

@@ -13,6 +13,15 @@ class BookDetailsDto {
         error = map['error'] ?? '';
 }
 
+class BookAuthorDto {
+  final String isbn13, authors, error;
+
+  BookAuthorDto.fromMap(Map<String, dynamic> map)
+      : isbn13 = map['isbn13'] ?? '',
+        authors = map['authors'] ?? '',
+        error = map['error'] ?? '';
+}
+
 var x = {
   "error": "0",
   "title": "Securing DevOps",
@@ -25,7 +34,8 @@ var x = {
   "pages": "384",
   "year": "2018",
   "rating": "4",
-  "desc": "An application running in the cloud can benefit from incredible efficiencies, but they come with unique security threats too. A DevOps team&#039;s highest priority is understanding those risks and hardening the system against them.Securing DevOps teaches you the essential techniques to secure your c...",
+  "desc":
+      "An application running in the cloud can benefit from incredible efficiencies, but they come with unique security threats too. A DevOps team&#039;s highest priority is understanding those risks and hardening the system against them.Securing DevOps teaches you the essential techniques to secure your c...",
   "price": "\$39.65",
   "image": "https://itbook.store/img/books/9781617294136.png",
   "url": "https://itbook.store/books/9781617294136",
