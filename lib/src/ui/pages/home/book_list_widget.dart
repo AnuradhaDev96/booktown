@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/fetch_books_cubit.dart';
 import '../../../bloc/states/fetch_books_state.dart';
 import '../../../models/dto/book.dart';
+import '../../widgets/list_seperator_widget.dart';
 import 'book_list_item_widget.dart';
 
 class BookListWidget extends StatelessWidget {
@@ -45,7 +47,7 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
   final ScrollController _scrollController = ScrollController();
 
   int _currentPage = 0;
-  final int _pageSize = 6;
+  final int _pageSize = 8;
 
   final List<BookDto> _paginatedList = <BookDto>[];
 
@@ -81,11 +83,14 @@ class _PaginatedBookListViewState extends State<PaginatedBookListView> {
         }
         return false;
       },
-      child: ListView.builder(
+      child: ListView.separated(
+        padding: EdgeInsets.only(top: 4.h, bottom: 8.h),
         shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
         controller: _scrollController,
         itemBuilder: (context, index) => BookListItemWidget(bookDto: _paginatedList[index]),
         itemCount: _paginatedList.length,
+        separatorBuilder: (context, index) => const ListSeparatorWidget(),
       ),
     );
   }
