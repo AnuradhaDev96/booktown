@@ -56,7 +56,7 @@ class HomeAppBar extends StatelessWidget {
                       onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       onFieldSubmitted: (value) => _searchBookByTitle(value, context),
                       keyboardType: TextInputType.text,
-                      decoration: AppStyles.commonInputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Search',
                         contentPadding: EdgeInsets.symmetric(horizontal: 4.w),
                         prefixIcon: IconButton(
@@ -79,7 +79,6 @@ class HomeAppBar extends StatelessWidget {
                               )
                             : null,
                       ),
-                      cursorColor: Colors.black,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return '';
