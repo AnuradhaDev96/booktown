@@ -7,6 +7,8 @@ import '../../../bloc/cubits/favorite_books_bloc.dart';
 import '../../../config/alert_utils.dart';
 import '../../../config/widget_keys.dart';
 import '../../../models/dto/favorite_book_dto.dart';
+import '../../widgets/book_list_shimmer_widget.dart';
+import '../../widgets/empty_list_placeholder_widget.dart';
 import '../../widgets/list_seperator_widget.dart';
 import '../home/book_list_item_widget.dart';
 
@@ -36,7 +38,10 @@ class FavoriteBooksPage extends StatelessWidget {
           stream: GetIt.instance<FavoriteBooksBloc>().favoriteBooksStream,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Text("Implement shimmer");
+              return ShimmerListWidget(
+                padding: EdgeInsets.only(top: 4.h, bottom: 8.h, left: 3.w, right: 3.w),
+                itemCount: 10,
+              );
             }
 
             if (snapshot.hasData) {
@@ -51,11 +56,11 @@ class FavoriteBooksPage extends StatelessWidget {
                   separatorBuilder: (context, index) => const ListSeparatorWidget(),
                 );
               } else {
-                return const Text(AlertMessages.favoriteBooksNotFound);
+                return const EmptyListPlaceholderWidget(message: AlertMessages.favoriteBooksNotFound);
               }
             }
 
-            return const Text(AlertMessages.errorFetchingFavoriteBooks);
+            return const EmptyListPlaceholderWidget(message: AlertMessages.errorFetchingFavoriteBooks);
           },
         ),
       ),
