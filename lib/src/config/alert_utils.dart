@@ -132,5 +132,5 @@ abstract class AlertMessages {
 
   // Favorite books
   static const String errorFetchingFavoriteBooks = 'Oops! There is an error fetching your favorite books.';
-  static const String favoriteBooksNotFound = 'You don\'t have any favorite books.';
+  static const String favoriteBooksNotFound = 'You don\'t have any\nfavorite books.';
 }
