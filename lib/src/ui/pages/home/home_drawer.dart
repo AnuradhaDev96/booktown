@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/toggle_theme_bloc.dart';
 
@@ -13,6 +14,16 @@ class HomeDrawer extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 3.w, top: 3.h),
+                child: Text(
+                  'Change theme',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+            ),
             StreamBuilder<ThemeMode>(
                 stream: GetIt.instance<ToggleThemeBloc>().themeModeStream,
                 builder: (context, snapshot) {
@@ -24,6 +35,7 @@ class HomeDrawer extends StatelessWidget {
                     },
                   );
                 }),
+            const Divider()
           ],
         ),
       ),
