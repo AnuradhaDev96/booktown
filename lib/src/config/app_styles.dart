@@ -86,9 +86,9 @@ abstract class AppStyles {
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(seedColor: mainColor, brightness: Brightness.dark),
       scaffoldBackgroundColor: Colors.black,
-      appBarTheme: const AppBarTheme(
-        surfaceTintColor: mainColor,
-        backgroundColor: mainColor,
+      appBarTheme: AppBarTheme(
+        surfaceTintColor: Colors.blueGrey[800],
+        backgroundColor: Colors.blueGrey[800],
       ),
       fontFamily: AppTextStyles.mainFontFamily,
       textTheme: AppTextStyles.commonTextTheme,
