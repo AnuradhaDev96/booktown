@@ -6,7 +6,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
 import '../../../bloc/cubits/switch_list_mode_cubit.dart';
-import '../../../config/app_routes.dart';
 import '../../../config/app_styles.dart';
 import '../../../config/widget_keys.dart';
 
