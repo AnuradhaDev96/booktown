@@ -23,14 +23,18 @@ class FavoriteBooksPage extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
-          leading: TextButton.icon(
-            onPressed: () => WidgetKeys.mainNavKey.currentState!.pop(),
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              size: 16,
+          leadingWidth: 20.w,
+          leading: Padding(
+            padding: EdgeInsets.only(left: 2.w),
+            child: TextButton.icon(
+              onPressed: () => WidgetKeys.mainNavKey.currentState!.pop(),
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                size: 16,
+              ),
+              label: const Text('Back'),
+              style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
             ),
-            label: const Text('Back'),
-            style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
           ),
           title: const Text("Favorites"),
         ),
