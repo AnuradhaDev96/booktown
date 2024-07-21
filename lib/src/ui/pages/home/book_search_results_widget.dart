@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
 import '../../../bloc/states/search_book_results_state.dart';
@@ -59,13 +60,19 @@ class _PaginatedBookResultListViewState extends State<PaginatedBookResultListVie
               ? SliverToBoxAdapter(
                   child: NotificationListener<ScrollNotification>(
                     onNotification: onNotificationCallback,
-                    child: ListView.builder(
+                    child: ListView.separated(
                       shrinkWrap: true,
                       controller: _scrollController,
                       itemBuilder: (context, index) => BookListItemWidget(
                         bookDto: widget.resultCubit.loadedBooks!.searchResults[index],
                       ),
                       itemCount: widget.resultCubit.loadedBooks!.searchResults.length,
+                      separatorBuilder: (context, index) => Divider(
+                        height: 5.h,
+                        indent: 5.w,
+                        endIndent: 5.w,
+                        thickness: 2.5,
+                      ),
                     ),
                   ),
                 )

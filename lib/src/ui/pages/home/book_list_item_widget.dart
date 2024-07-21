@@ -106,46 +106,43 @@ class BookListItemWidget extends StatelessWidget {
               },
             ),
           ],
-          child: SizedBox(
-            height: 140,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.network(
-                  bookDto.image,
-                  width: 20.w,
-                  height: 18.w,
-                  fit: BoxFit.fitHeight,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(
+                bookDto.image,
+                width: 20.w,
+                height: 18.w,
+                fit: BoxFit.fitWidth,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(bookDto.title, style: Theme.of(context).textTheme.titleMedium),
+                    Text(bookDto.subtitle),
+                  ],
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(bookDto.title, style: Theme.of(context).textTheme.titleMedium),
-                      Text(bookDto.subtitle),
-                    ],
-                  ),
-                ),
-                StreamBuilder<List<FavoriteBookDto>>(
-                  stream: GetIt.instance<FavoriteBooksBloc>().favoriteBooksStream,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData && snapshot.data != null) {
-                      final currentFavoriteList = snapshot.data!;
-                      if (currentFavoriteList.any((fav) => fav.isbn13 == bookDto.isbn13)) {
-                        return FavoriteIconButtonFilled(isbn: bookDto.isbn13);
-                      } else {
-                        return FavoriteIconButtonOutlined(book: bookDto);
-                      }
+              ),
+              StreamBuilder<List<FavoriteBookDto>>(
+                stream: GetIt.instance<FavoriteBooksBloc>().favoriteBooksStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && snapshot.data != null) {
+                    final currentFavoriteList = snapshot.data!;
+                    if (currentFavoriteList.any((fav) => fav.isbn13 == bookDto.isbn13)) {
+                      return FavoriteIconButtonFilled(isbn: bookDto.isbn13);
                     } else {
-                      return IconButton(
-                        onPressed: () {},
-                        icon: const Icon(CupertinoIcons.heart),
-                      );
+                      return FavoriteIconButtonOutlined(book: bookDto);
                     }
-                  },
-                ),
-              ],
-            ),
+                  } else {
+                    return IconButton(
+                      onPressed: () {},
+                      icon: const Icon(CupertinoIcons.heart),
+                    );
+                  }
+                },
+              ),
+            ],
           ),
         ),
       ),
