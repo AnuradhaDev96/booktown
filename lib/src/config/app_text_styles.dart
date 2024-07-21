@@ -6,6 +6,7 @@ abstract class AppTextStyles {
   static const String mainFontFamily = 'Lexend';
 
   static TextTheme commonTextTheme = TextTheme(
+    titleLarge: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700, height: 0),
     titleMedium: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, height: 0),
   );
 }
