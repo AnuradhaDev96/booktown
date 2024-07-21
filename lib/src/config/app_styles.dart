@@ -20,10 +20,10 @@ abstract class AppStyles {
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: const TextStyle(fontWeight: FontWeight.w400),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(18.sp),
           borderSide: const BorderSide(
             color: Colors.black,
-            width: 1,
+            width: 1.2,
           ),
         ),
         labelStyle: TextStyle(
@@ -32,31 +32,31 @@ abstract class AppStyles {
           fontWeight: FontWeight.normal,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(18.sp),
           borderSide: const BorderSide(
             color: Colors.black,
-            width: 1,
+            width: 1.2,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(20.sp),
           borderSide: const BorderSide(
             color: Colors.black,
             width: 1.8,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(20.sp),
           borderSide: BorderSide(
             color: Colors.redAccent[400]!,
             width: 1.8,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(18.sp),
           borderSide: BorderSide(
             color: Colors.redAccent[400]!,
-            width: 1,
+            width: 1.2,
           ),
         ),
       ),
@@ -77,18 +77,12 @@ abstract class AppStyles {
       textTheme: AppTextStyles.commonTextTheme,
       useMaterial3: true,
       inputDecorationTheme: InputDecorationTheme(
-        // hintText: hintText,
-        // labelText: labelText,
-        // label: label,
-        // counter: const SizedBox.shrink(),
-        // suffixIcon: suffixIcon,
-        // prefixIcon: prefixIcon,
         hintStyle: const TextStyle(fontWeight: FontWeight.w400),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(18.sp),
           borderSide: const BorderSide(
             color: Colors.white,
-            width: 1,
+            width: 1.2,
           ),
         ),
         labelStyle: TextStyle(
@@ -97,31 +91,31 @@ abstract class AppStyles {
           fontWeight: FontWeight.normal,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(18.sp),
           borderSide: const BorderSide(
             color: Colors.white,
-            width: 1,
+            width: 1.2,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(20.sp),
           borderSide: const BorderSide(
             color: Colors.white,
             width: 1.8,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(20.sp),
           borderSide: BorderSide(
             color: Colors.redAccent[400]!,
             width: 1.8,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(18.sp),
           borderSide: BorderSide(
             color: Colors.redAccent[400]!,
-            width: 1,
+            width: 1.2,
           ),
         ),
       ),
