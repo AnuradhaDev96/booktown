@@ -37,7 +37,7 @@ class FavoriteIconButtonFilled extends StatelessWidget {
                   _removeFavCubit.removeBookFromFavorites(isbn);
                 }
               },
-              icon: const Icon(CupertinoIcons.heart_fill),
+              icon: Icon(CupertinoIcons.heart_fill, color: Colors.redAccent[400]),
             );
           },
         ),
