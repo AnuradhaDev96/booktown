@@ -1,4 +1,4 @@
-# booktown
+# Booktown
 
 Flutter SDK version - 3.22.3
 
@@ -9,6 +9,9 @@ Github - AnuradhaDev96
 
 You should have Flutter SDK version 3.22.3.
 Recommend fvm (flutter version manager) to install or flutter upgrade.
+
+# Screenshots
+Google drive folder with screenshots => [Google Drive](https://drive.google.com/drive/folders/1YEyZ3qL2Cl4fMKzTmdy5uY9NagwCiMqc?usp=sharing)
 
 # Features
 ## 1. Home page
