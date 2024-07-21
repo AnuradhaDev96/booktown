@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../config/app_colors.dart';
 import '../../config/app_routes.dart';
 import '../../config/widget_keys.dart';
 
@@ -30,9 +32,46 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("BookTown"),
+    return Scaffold(
+      body: Container(
+        width: 100.w,
+        height: 100.h,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [AppColors.gradientBlue1, AppColors.gradientBlue2],
+          ),
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Center(
+              child: Text(
+                "Booktown",
+                style: TextStyle(
+                  letterSpacing: -2,
+                  color: Colors.white,
+                  fontSize: 29.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 10.h,
+              child: Text(
+                'IT, Programming\n& Computer Science Books',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white54,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.sp,
+                    letterSpacing: -0.8,
+                    height: 1.2),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

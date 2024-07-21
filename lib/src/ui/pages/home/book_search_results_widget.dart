@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
+import '../../../bloc/cubits/switch_list_mode_cubit.dart';
 import '../../../bloc/states/search_book_results_state.dart';
 import '../../../config/alert_utils.dart';
 import '../../widgets/book_list_shimmer_widget.dart';
@@ -122,6 +123,7 @@ class SearchResultAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final searchResultCubit = BlocProvider.of<SearchBookResultCubit>(context);
+    final switchListModeCubit = BlocProvider.of<SwitchBookListModeCubit>(context);
 
     return BlocBuilder<SearchBookResultCubit, SearchBookResultsState>(
       bloc: searchResultCubit,
@@ -148,8 +150,7 @@ class SearchResultAppBar extends StatelessWidget {
                                 style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20.sp)),
                             TextSpan(
                               // text: '''"${searchResultCubit.loadedBooks?.searchedTerm}"''',
-                              text:
-                                  '''"${searchResultCubit.loadedBooks?.searchedTerm}"''',
+                              text: '''"${searchResultCubit.loadedBooks?.searchedTerm}"''',
                               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                     fontSize: 16.sp,
                                     letterSpacing: 0.4,
@@ -160,33 +161,51 @@ class SearchResultAppBar extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8, bottom: 15),
-                        child: Text.rich(
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                          TextSpan(
-                            children: [
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text.rich(
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.left,
                               TextSpan(
-                                text: "Showing",
-                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      letterSpacing: -0.03,
-                                    ),
+                                children: [
+                                  TextSpan(
+                                    text: "Showing",
+                                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                          letterSpacing: -0.03,
+                                        ),
+                                  ),
+                                  TextSpan(
+                                    text: " ${searchResultCubit.loadedBooks?.searchResults.length} ",
+                                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                          letterSpacing: -0.03,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                  ),
+                                  TextSpan(
+                                    text: "of ${searchResultCubit.loadedBooks?.total} books",
+                                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                          letterSpacing: -0.03,
+                                        ),
+                                  ),
+                                ],
                               ),
-                              TextSpan(
-                                text: " ${searchResultCubit.loadedBooks?.searchResults.length} ",
-                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      letterSpacing: -0.03,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                              ),
-                              TextSpan(
-                                text: "of ${searchResultCubit.loadedBooks?.total} books",
-                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      letterSpacing: -0.03,
-                                    ),
-                              ),
-                            ],
-                          ),
+                            ),
+                            TextButton(
+                              onPressed: () => switchListModeCubit.switchToListMode(),
+                              style: TextButton.styleFrom(
+                                  elevation: 2,
+                                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 3.5),
+                                  textStyle: TextStyle(
+                                    fontSize: 14.5.sp,
+                                    fontWeight: FontWeight.w700,
+                                    letterSpacing: -0.4,
+                                  ),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+                              child: const Text("Clear search"),
+                            ),
+                          ],
                         ),
                       ),
                     ],

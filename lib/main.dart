@@ -33,14 +33,20 @@ class BookTownApp extends StatelessWidget {
               theme: AppStyles.lightTheme,
               darkTheme: AppStyles.darkTheme,
               themeMode: snapshot.data ?? ThemeMode.light,
+              themeAnimationStyle: AnimationStyle(
+                curve: Curves.fastOutSlowIn,
+                duration: const Duration(milliseconds: 800),
+                reverseDuration: const Duration(milliseconds: 800),
+                reverseCurve: Curves.fastOutSlowIn,
+              ),
               navigatorKey: WidgetKeys.mainNavKey,
               scaffoldMessengerKey: WidgetKeys.mainScaffoldMessengerKey,
               initialRoute: RouteNames.splashScreen,
               onGenerateRoute: (settings) => RouteConfig.generateRoute(settings),
             );
-          }
+          },
         );
-      }
+      },
     );
   }
 }

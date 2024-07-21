@@ -41,6 +41,7 @@ dependencies:
   loader_overlay: ^4.0.0
   logger: ^2.4.0
   path: ^1.9.0
+  rect_getter: ^1.1.0
   responsive_sizer: ^3.3.1
   rxdart: ^0.28.0
   shared_preferences: ^2.2.3

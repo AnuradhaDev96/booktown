@@ -68,11 +68,14 @@ class BookDetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              width: 100.w,
-              height: 30.h,
-              fit: BoxFit.fitHeight,
-              details.image,
+            Hero(
+              tag: "Hero-${details.isbn13}",
+              child: Image.network(
+                width: 100.w,
+                height: 30.h,
+                fit: BoxFit.fitHeight,
+                details.image,
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 3.w, right: 3.w),
@@ -111,10 +114,10 @@ class BookDetailsPage extends StatelessWidget {
                     child: Center(
                       child: Text(
                         details.price,
-                        // '''\$12334.45''',
                         style: const TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.2,
                         ),
                       ),
                     ),

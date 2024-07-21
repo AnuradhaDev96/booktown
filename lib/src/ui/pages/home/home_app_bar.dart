@@ -1,16 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rect_getter/rect_getter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../bloc/cubits/search_book_result_cubit.dart';
 import '../../../bloc/cubits/switch_list_mode_cubit.dart';
-import '../../../config/app_routes.dart';
-import '../../../config/app_styles.dart';
 import '../../../config/widget_keys.dart';
 
 class HomeAppBar extends StatelessWidget {
-  HomeAppBar({super.key});
+  HomeAppBar({super.key, required this.heartIconRectKey, this.onHeartButtonPressed});
+  final GlobalKey<RectGetterState> heartIconRectKey;
+
+  /// Pass function as parameter
+  final Function()? onHeartButtonPressed;
 
   /// This controller is used for ValueListenableBuilder to listen changes in text
   final TextEditingController _searchTermController = TextEditingController();
@@ -48,11 +51,12 @@ class HomeAppBar extends StatelessWidget {
                   builder: (context, searchTerm, _) {
                     return TextFormField(
                       controller: _searchTermController,
+                      autofocus: false,
                       textInputAction: TextInputAction.search,
                       onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       onFieldSubmitted: (value) => _searchBookByTitle(value, context),
                       keyboardType: TextInputType.text,
-                      decoration: AppStyles.commonInputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Search',
                         contentPadding: EdgeInsets.symmetric(horizontal: 4.w),
                         prefixIcon: IconButton(
@@ -69,13 +73,12 @@ class HomeAppBar extends StatelessWidget {
                             ? IconButton(
                                 onPressed: () {
                                   _searchTermController.clear();
-                                  BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
+                                  // BlocProvider.of<SwitchBookListModeCubit>(context).switchToListMode();
                                 },
                                 icon: const Icon(Icons.close),
                               )
                             : null,
                       ),
-                      cursorColor: Colors.black,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return '';
@@ -94,7 +97,7 @@ class HomeAppBar extends StatelessWidget {
                         title: Text(recentSearchItem),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          anchorController.closeView(recentSearchItem);
+                          anchorController.closeView(null);
                           _searchBookByTitle(recentSearchItem, context);
                         },
                       ),
@@ -104,9 +107,12 @@ class HomeAppBar extends StatelessWidget {
             ),
           ),
 
-          IconButton(
-            onPressed: () => WidgetKeys.mainNavKey.currentState!.pushNamed(RouteNames.favoriteBooksPage),
-            icon: const Icon(CupertinoIcons.heart_fill),
+          RectGetter(
+            key: heartIconRectKey,
+            child: IconButton(
+              onPressed: onHeartButtonPressed,
+              icon: const Icon(CupertinoIcons.heart_fill),
+            ),
           ),
         ],
       ),
