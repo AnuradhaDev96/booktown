@@ -8,5 +8,6 @@ abstract class AppTextStyles {
   static TextTheme commonTextTheme = TextTheme(
     titleLarge: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700, height: 0),
     titleMedium: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, height: 0),
+    titleSmall: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400, height: 0),
   );
 }

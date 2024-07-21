@@ -26,7 +26,13 @@ class BookSearchResultsWidget extends StatelessWidget {
             itemCount: 10,
           );
         } else if (state is BookResultsLoadedState) {
-          return PaginatedBookResultListView(currentState: state, resultCubit: searchResultCubit);
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SearchResultAppBar(),
+              Expanded(child: PaginatedBookResultListView(currentState: state, resultCubit: searchResultCubit)),
+            ],
+          );
         }
 
         return const SizedBox.shrink();
@@ -105,6 +111,94 @@ class _PaginatedBookResultListViewState extends State<PaginatedBookResultListVie
             ),
         ],
       ),
+    );
+  }
+}
+
+/// Show stats of the
+class SearchResultAppBar extends StatelessWidget {
+  const SearchResultAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final searchResultCubit = BlocProvider.of<SearchBookResultCubit>(context);
+
+    return BlocBuilder<SearchBookResultCubit, SearchBookResultsState>(
+      bloc: searchResultCubit,
+      builder: (BuildContext context, state) {
+        if (state is BookResultsLoadedState) {
+          return Padding(
+            padding: EdgeInsets.only(left: 4.w, right: 4.w),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text.rich(
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Results for ',
+                                style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20.sp)),
+                            TextSpan(
+                              // text: '''"${searchResultCubit.loadedBooks?.searchedTerm}"''',
+                              text:
+                                  '''"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."''',
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontSize: 16.sp,
+                                    letterSpacing: 0.4,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8, bottom: 15),
+                        child: Text.rich(
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Showing",
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                      letterSpacing: -0.03,
+                                    ),
+                              ),
+                              TextSpan(
+                                text: " ${searchResultCubit.loadedBooks?.searchResults.length} ",
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                      letterSpacing: -0.03,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                              ),
+                              TextSpan(
+                                text: "of ${searchResultCubit.loadedBooks?.total} books",
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                      letterSpacing: -0.03,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
     );
   }
 }
