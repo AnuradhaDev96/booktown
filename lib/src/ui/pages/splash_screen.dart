@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../config/app_routes.dart';
-import '../../config/widget_keys.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
