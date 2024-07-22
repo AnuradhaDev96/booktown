@@ -127,18 +127,7 @@ class BookListItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(bookDto.title, style: Theme.of(context).textTheme.titleMedium),
-                    FutureBuilder<BookAuthorDto?>(
-                        future: GetIt.instance<BookRepository>().getBookAuthorsIsbnNo(bookDto.isbn13),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return const SizedBox.shrink();
-                          }
-
-                          if (snapshot.hasData && snapshot.data != null) {
-                            return Text(snapshot.data!.authors);
-                          }
-                          return const SizedBox.shrink();
-                        }),
+                    BookAuthorsWidget(bookDto: bookDto),
                   ],
                 ),
               ),
@@ -180,6 +169,44 @@ class BookListItemWidget extends StatelessWidget {
       const Duration(milliseconds: 1800),
       () {
         context.loaderOverlay.hide();
+      },
+    );
+  }
+}
+
+class BookAuthorsWidget extends StatefulWidget {
+  const BookAuthorsWidget({super.key, required this.bookDto});
+
+  final BookDto bookDto;
+
+  @override
+  State<BookAuthorsWidget> createState() => _BookAuthorsWidgetState();
+}
+
+class _BookAuthorsWidgetState extends State<BookAuthorsWidget> {
+  late final Future<BookAuthorDto?> _getAuthorFuture;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _getAuthorFuture = GetIt.instance<BookRepository>().getBookAuthorsIsbnNo(widget.bookDto.isbn13);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<BookAuthorDto?>(
+      // key: ValueKey<String>("author-${bookDto.isbn13}"),
+      future: _getAuthorFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox.shrink();
+        }
+
+        if (snapshot.hasData && snapshot.data != null) {
+          return Text(snapshot.data!.authors);
+        }
+        return const SizedBox.shrink();
       },
     );
   }
