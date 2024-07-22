@@ -24,7 +24,7 @@ class FavoriteIconButtonFilled extends StatelessWidget {
           if (state is ErrorState) {
             AlertUtils.showSnackBar(state.errorMessage, AlertTypes.error);
           } else if (state is SuccessState) {
-            AlertUtils.showSnackBar("Removed from favorites", AlertTypes.success);
+            AlertUtils.showSnackBar("Removed from favorites", AlertTypes.success, vibrate: true);
           }
         },
         child: BlocBuilder<RemoveFavoriteBookCubit, DataPayloadState>(
@@ -63,7 +63,7 @@ class FavoriteIconButtonOutlined extends StatelessWidget {
           if (state is ErrorState) {
             AlertUtils.showSnackBar(state.errorMessage, AlertTypes.error);
           } else if (state is SuccessState) {
-            AlertUtils.showSnackBar("Marked as favorite", AlertTypes.success);
+            AlertUtils.showSnackBar("Marked as favorite", AlertTypes.success, vibrate: true);
           }
         },
         child: BlocBuilder<AddFavoriteBookCubit, DataPayloadState>(

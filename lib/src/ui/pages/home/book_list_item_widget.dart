@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -165,6 +166,10 @@ class BookListItemWidget extends StatelessWidget {
         color: isFilled ? Colors.redAccent[200] : Colors.grey,
       ),
     );
+
+    // Alert user with a vibration
+    HapticFeedback.lightImpact();
+
     Future.delayed(
       const Duration(milliseconds: 1800),
       () {
